@@ -1,9 +1,46 @@
+<script>
+  var map;  
+  var marker;
+  function initialize() {
+    var myLatlng = new google.maps.LatLng(42.861118,74.607811);
+    var myOptions = {
+        zoom: 12,
+        center: myLatlng,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+    map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+    google.maps.event.addListener(map, 'click', function(event) {
+      placeMarker(event.latLng);
+    });
+    marker = new google.maps.Marker({
+        position: myLatlng, 
+        map: map
+    });
+  }
+    
+  function loadScript() {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = "http://maps.google.com/maps/api/js?sensor=false&callback=initialize";
+    document.body.appendChild(script);
+  }
+
+  function placeMarker(location) {
+    marker.setPosition(location);
+    $("report_latitude").setValue(location.lat());
+    $("report_longtitude").setValue(location.lng());
+  }  
+  window.onload = loadScript;
+</script>
 <%= form_for @report do |r| %>
-    <%= hidden_field :report, :latitude %>
-    <%= hidden_field :report, :longtitude %>
     <%= r.label :title %>
     <%= r.text_field :title %>
+    <%= r.label :latitude %>
+    <%= r.text_field  :latitude %>
+    <%= r.label :longtitude %>
+    <%= r.text_field  :longtitude %>
     <%= r.label :description %>
     <%= r.text_area :description %>
     <%= r.submit "Save" %>
 <% end %>
+<div id="map_canvas"></div>
