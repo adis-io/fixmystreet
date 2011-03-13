@@ -1,0 +1,9 @@
+<%= form_for @report do |r| %>
+    <%= hidden_field :report, :latitude %>
+    <%= hidden_field :report, :longtitude %>
+    <%= r.label :title %>
+    <%= r.text_field :title %>
+    <%= r.label :description %>
+    <%= r.text_area :description %>
+    <%= r.submit "Save" %>
+<% end %>

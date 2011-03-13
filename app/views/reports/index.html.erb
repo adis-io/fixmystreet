@@ -1,5 +1,36 @@
+<script>
+  function initialize() {
+    var myLatlng = new google.maps.LatLng(42.861118,74.607811);
+    var myOptions = {
+        zoom: 12,
+        center: myLatlng,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+    var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+    <% @reports.each do |report| %>
+    var image = '/images/beachflag.png';
+    var myLatLng = new google.maps.LatLng(<%= report.latitude %>, <%= report.longtitude %>);
+    var beachMarker = new google.maps.Marker({
+        position: myLatLng,
+        map: map,
+        icon: image
+    });
+    <% end %>
+  }
+    
+  function loadScript() {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = "http://maps.google.com/maps/api/js?sensor=false&callback=initialize";
+    document.body.appendChild(script);
+  }
+    
+  window.onload = loadScript;
+</script>
+<%=link_to "Add Report", new_report_path %>
 <ul id="report_list">
     <% @reports.each do |report| %>
         <li><%= link_to report.title, report_path(report) %></li>
     <% end %>
 </ul>
+<div id="map_canvas"></div>
