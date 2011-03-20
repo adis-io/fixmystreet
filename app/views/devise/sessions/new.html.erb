@@ -1,0 +1,11 @@
+<div id="loginform">
+  <h2>Sign in</h2>
+
+<%- if devise_mapping.recoverable? && controller_name != 'passwords' %>
+  <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
+<% end -%>
+
+<a href="<%= user_omniauth_authorize_path(:facebook) %>">Here logo of facebook</a>
+<a href="<%= user_omniauth_authorize_path(:twitter) %>">Here logo of twitter</a>
+
+</div>

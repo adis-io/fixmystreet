@@ -25,4 +25,9 @@ RSpec.configure do |config|
   # examples within a transaction, remove the following line or assign false
   # instead of true.
   config.use_transactional_fixtures = true
+  load_schema = lambda {
+    load "#{Rails.root.to_s}/db/schema.rb" # use db agnostic schema by default
+    # ActiveRecord::Migrator.up('db/migrate') # use migrations
+  }
+  silence_stream(STDOUT, &load_schema)
 end

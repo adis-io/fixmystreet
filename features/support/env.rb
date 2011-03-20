@@ -55,3 +55,40 @@ if defined?(ActiveRecord::Base)
   rescue LoadError => ignore_if_database_cleaner_not_present
   end
 end
+OmniAuth.config.test_mode = true
+OmniAuth.config.mock_auth[:facebook] = {
+  'extra' => {
+    'user_hash' => {
+      'id' => '12345',
+      'link' => 'http://facebook.com/osmonov',
+      'email' => 'kalys@osmonov.com',
+      'first_name' => 'Kalys',
+      'last_name' => 'Osmonov',
+      'website' => 'http://osmonov.com',
+      'gender' => 'Male'
+    }
+  }
+}
+OmniAuth.config.mock_auth[:twitter] = {
+  'uid' => '12345',
+  'user_info' => {
+      'id' => '12345',
+      'link' => 'http://facebook.com/osmonov',
+      'email' => 'kalys@osmonov.com',
+      'name' => 'Kalys Osmonov',
+      'gender' => 'Male',
+      'urls' => {'Website' => 'http://osmonov.com'}
+  }
+}
+
+Before do
+  load_schema = lambda {
+    # use db agnostic schema by default
+    load "#{Rails.root.to_s}/db/schema.rb"
+
+    # if you use seeds uncomment next line
+    load "#{Rails.root.to_s}/db/seeds.rb"
+    # ActiveRecord::Migrator.up('db/migrate') # use migrations
+  }
+  silence_stream(STDOUT, &load_schema)
+end

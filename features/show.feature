@@ -3,11 +3,14 @@ Feature: Show location
     As citizen of city
     I want to have access to problem place information
 
+    Background:
+        Given I logged in
+
     Scenario: Show
         Given a reports:
-          | title              | description             | latitude | longtitude |
-          | Traffic            | asdfsfasasdfasdfasdfad  | 1        | 1          | 
-          | Lyuk, ya tvoi otes | bla bla bla bla bla bla | 1        | 1          | 
+          | title              | description             | latitude | longtitude |  user              |
+          | Traffic            | asdfsfasasdfasdfasdfad  | 1        | 1          |  kalys@osmonov.com |
+          | Lyuk, ya tvoi otes | bla bla bla bla bla bla | 1        | 1          |  kalys@osmonov.com |
         When I go to the home page
         And I follow "Traffic"
         Then I should see "Traffic"

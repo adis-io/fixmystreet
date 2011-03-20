@@ -1,5 +1,7 @@
 class ReportsController < ApplicationController
 
+  before_filter :check_auth, :only => [:new, :create]
+
   def index
     @reports = Report.all
   end
@@ -15,7 +17,9 @@ class ReportsController < ApplicationController
   end
 
   def create
-    @report = Report.create params[:report]
+    @report = Report.new
+    @report.user = current_user
+    @report.update_attributes params[:report]
     unless @report.valid?
       render :action => "new" and return
     end

@@ -1,12 +1,12 @@
 require 'spec_helper'
 
 describe Report do
-  it { should validate_presence_of :title, 
-    :description, :latitude, :longtitude 
+  it { should validate_presence_of :title,
+    :description, :latitude, :longtitude, :user
   }
 
   it { should allow_mass_assignment_of :title,
-    :description, :latitude, :longtitude 
+    :description, :latitude, :longtitude, :user
   }
 
   it { should validate_length_of :title, :minimum => 5,
@@ -16,6 +16,11 @@ describe Report do
   it { should validate_length_of :description, :minimum => 20,
     :maximum => 5000
   }
-  Report.create(:title => 'asdfasdf', :description => 'adfasdfas asdf asdf asd fasdf asdf', :latitude => 1, :longtitude => 1)
+  Report.create!(:title => 'asdfasdf',
+                :description => 'adfasdfas asdf asdf asd fasdf asdf',
+                :latitude => 1, :longtitude => 1,
+                :user => User.create!)
   it { should validate_uniqueness_of :title }
+
+  it { should belong_to :user }
 end
