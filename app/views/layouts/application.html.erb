@@ -3,9 +3,12 @@
 <head>
   <title>Fixmystreet</title>
   <%= stylesheet_link_tag :all %>
+  <%= stylesheet_link_tag "jquery.jgrowl" %>
   <%= javascript_include_tag :defaults %>
+  <%= javascript_include_tag "jquery.jgrowl" %>
   <%= javascript_include_tag "http://maps.google.com/maps/api/js?sensor=true&language=ru" %>
   <%= csrf_meta_tag %>
+  <%= display_flash %>
 </head>
 <body>
   <% if user_signed_in? %>

@@ -44,8 +44,8 @@ GEM
     capistrano (2.5.20)
       highline
       highline
-      net-scp
       net-scp (>= 1.0.0)
+      net-scp
       net-sftp
       net-sftp (>= 2.0.0)
       net-ssh (>= 2.0.14)
@@ -89,6 +89,9 @@ GEM
       json (~> 1.4.6)
     highline (1.6.1)
     i18n (0.5.0)
+    jquery-rails (0.2.7)
+      rails (~> 3.0)
+      thor (~> 0.14.4)
     json (1.4.6)
     json_pure (1.5.1)
     mail (2.2.15)
@@ -194,6 +197,7 @@ DEPENDENCIES
   cucumber-rails
   database_cleaner
   devise!
+  jquery-rails (~> 0.2)
   oa-oauth (= 0.2.0)
   rails (= 3.0.5)
   remarkable_activerecord (~> 4.0.0.alpha4)
