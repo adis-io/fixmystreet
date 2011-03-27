@@ -15,3 +15,4 @@ Feature: Show location
         And I follow "Traffic"
         Then I should see "Traffic"
         And I should see "asdfsfasasdfasdfasdfad"
+        And I should see "Kalys Osmonov"
