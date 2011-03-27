@@ -8,12 +8,18 @@ Feature: Logit with facebook
         And I follow "Login with Facebook"
         Then I should be on the homepage
         And I should see "Welcome, Kalys Osmonov"
+        And there should be a user:
+          | email             | facebook_id | link                        | name          | gender | 
+          | kalys@osmonov.com | 12345       | http://facebook.com/osmonov | Kalys Osmonov | Male   |
 
     Scenario: Login with twitter
         When I go to the homepage
         And I follow "Login with Twitter"
         Then I should be on the homepage
         And I should see "Welcome, Kalys Osmonov"
+        And there should be a user:
+          | twitter_id | link                            | name          | gender | 
+          | 12345      | http://twitter.com/kalysosmonov | Kalys Osmonov | Male   |
 
     Scenario: Logout
         When I go to the homepage

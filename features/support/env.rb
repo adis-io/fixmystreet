@@ -77,7 +77,10 @@ OmniAuth.config.mock_auth[:twitter] = {
       'email' => 'kalys@osmonov.com',
       'name' => 'Kalys Osmonov',
       'gender' => 'Male',
-      'urls' => {'Website' => 'http://osmonov.com'}
+      'urls' => {
+        'Website' => 'http://osmonov.com',
+        'Twitter' => 'http://twitter.com/kalysosmonov'
+      }
   }
 }
 

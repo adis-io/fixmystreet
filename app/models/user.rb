@@ -28,7 +28,6 @@ class User < ActiveRecord::Base
     user.link = data["link"]
     user.gender = data["gender"]
     user.name = "#{data["first_name"]} #{data["last_name"]}"
-    user.facebook = data["link"]
     user.password = Devise.friendly_token[0, 20]
     user.save
     user
@@ -36,6 +35,7 @@ class User < ActiveRecord::Base
 
   def self.find_for_twitter(access_token, signed_in_resource=nil)
     data = access_token['user_info']
+    puts data.inspect
     user = User.find_by_twitter_id(access_token['uid'])
     # if we already have such user
     return user if user
@@ -49,7 +49,7 @@ class User < ActiveRecord::Base
     user.twitter_id = access_token["uid"]
     user.gender = data["gender"]
     user.name = data["name"]
-    user.link = data['urls']['Website']
+    user.link = data['urls']['Twitter']
     user.password = Devise.friendly_token[0, 20]
     user.twitter = data['nickname']
     user.save
