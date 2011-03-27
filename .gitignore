@@ -5,3 +5,6 @@ tmp/**/*
 .gems
 .rvmrc
 .devise.rb
+config/initializers/devise.rb
+Capfile
+config/deploy.rb
