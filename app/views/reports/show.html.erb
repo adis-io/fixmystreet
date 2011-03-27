@@ -26,4 +26,5 @@
 </script>
 <%=@report.title %>
 <%=@report.description %>
+<%= link_to @report.user.name, @report.user.link %>
 <div id="map_canvas"></div>

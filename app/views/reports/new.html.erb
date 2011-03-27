@@ -27,8 +27,8 @@
 
   function placeMarker(location) {
     marker.setPosition(location);
-    $("report_latitude").setValue(location.lat());
-    $("report_longtitude").setValue(location.lng());
+    $("#report_latitude").val(location.lat());
+    $("#report_longtitude").val(location.lng());
   }  
   window.onload = loadScript;
 </script>
