@@ -46,6 +46,7 @@ class User < ActiveRecord::Base
       user = User.new
     end
 
+    user.email = "#{data['nickname']}@twitter.com"
     user.twitter_id = access_token["uid"]
     user.gender = data["gender"]
     user.name = data["name"]
