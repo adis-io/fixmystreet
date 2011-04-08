@@ -2,7 +2,7 @@
   function initialize() {
     var myLatlng = new google.maps.LatLng(42.861118,74.607811);
     var myOptions = {
-        zoom: 12,
+        zoom: 11,
         center: myLatlng,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     }
@@ -30,10 +30,12 @@
     
   window.onload = loadScript;
 </script>
-<%=link_to "Add Report", new_report_path %>
+<div class="grid_8" id="map_canvas"></div>
+<div class="grid_4">
 <ul id="report_list">
     <% @reports.each do |report| %>
-        <li><%= link_to report.title, report_path(report) %></li>
+      <li><h5><%= link_to report.title, report_path(report) %></h5></li>
     <% end %>
 </ul>
-<div id="map_canvas"></div>
+</div>
+<div class="clear"></div>

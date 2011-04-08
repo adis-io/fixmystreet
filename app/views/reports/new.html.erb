@@ -32,15 +32,20 @@
   }  
   window.onload = loadScript;
 </script>
+<div class="grid_8">
+  <div id="map_canvas"></div>
+</div>
+<div class="grid_4">
 <%= form_for @report do |r| %>
     <%= r.label :title %>
     <%= r.text_field :title %>
-    <%= r.label :latitude %>
-    <%= r.text_field  :latitude %>
-    <%= r.label :longtitude %>
-    <%= r.text_field  :longtitude %>
+    <div style="display:none">
+      <%= r.text_field  :latitude %>
+      <%= r.text_field  :longtitude %>
+    </div>
     <%= r.label :description %>
     <%= r.text_area :description %>
     <%= r.submit "Save" %>
 <% end %>
-<div id="map_canvas"></div>
+</div>
+<div class="clear"></div>

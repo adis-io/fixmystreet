@@ -1,4 +1,92 @@
+body {
+}
+
+#content {
+  background: #222;
+  color: #B4B4B4;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+#content a {
+  color: #FC3535;
+}
+
+#content a:hover {
+  text-decoration: underline;
+}
+
 #map_canvas {
-    width: 1000px;
     height: 500px;
+}
+
+header a, footer a {
+  color: #222;
+  text-decoration: none;
+}
+
+header a:hover, footer a:hover {
+  color: #7E090C;
+  text-decoration: underline;
+}
+
+header, footer {
+  height: 120px;
+  background: white;
+}
+
+footer {
+  margin-top: 20px;
+  font-size: 120%;
+}
+
+@font-face {
+  font-family: 'Permanent Marker';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Permanent Marker'), local('PermanentMarker'), url('/fonts/PermanentMarker.ttf') format('truetype');
+}
+
+#main_title {
+  font-family: 'Permanent Marker', arial, serif;
+  font-size: 400%;
+  color: #222;
+  line-height: 120px;
+}
+
+#main_title a:hover {
+  text-decoration: none;
+  color: #222;
+}
+
+#city {
+  color: #FC3535;
+  font-size: 40%;
+}
+
+#user_box {
+  text-align: right;
+}
+
+.header_right {
+  margin-top: 5px;
+}
+
+#header_menu {
+  margin-top: 32px;
+  float: right;
+}
+
+#header_menu li {
+  list-style: none;
+  float:left;
+  font-size: 120%;
+}
+
+#report_list {
+  list-style: decimal;
+}
+
+#report_list li {
+  margin-bottom: px;
 }

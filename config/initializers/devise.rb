@@ -182,6 +182,6 @@ Devise.setup do |config|
   #   manager.intercept_401 = false
   #   manager.default_strategies(:scope => :user).unshift :some_external_strategy
   # end
-  config.omniauth :twitter, "consumer_id", "consumer_secret"
-  config.omniauth :facebook, "app_id", "app_secret"
+  config.omniauth :twitter, "WTG1ISUG4xVT9TUqiowcQ", "VPGUkZb3XiRT46KkPp0c8CLV6YtISXqAkclQZ8EMvpo"
+  config.omniauth :facebook, "181196291926737", "429d7ee9e41bd1d7e7da492d49b1d0ac"
 end
