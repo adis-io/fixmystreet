@@ -25,4 +25,10 @@ class ReportsController < ApplicationController
     end
     redirect_to report_path @report
   end
+
+  def about
+  end
+
+  def contacts
+  end
 end

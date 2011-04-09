@@ -14,6 +14,8 @@ Fixmystreet::Application.routes.draw do
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   resources :reports
+  match 'about' => 'reports#about', :as => :about
+  match 'contacts' => 'reports#contacts', :as => :contacts
 
   # Sample resource route with options:
   #   resources :products do
