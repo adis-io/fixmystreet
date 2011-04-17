@@ -1,5 +1,5 @@
 <script>
-  var map;  
+  var map;
   var marker;
   function initialize() {
     var myLatlng = new google.maps.LatLng(42.861118,74.607811);
@@ -13,11 +13,13 @@
       placeMarker(event.latLng);
     });
     marker = new google.maps.Marker({
-        position: myLatlng, 
+        position: myLatlng,
         map: map
     });
+    $("#report_latitude").val(myLatlng.lat());
+    $("#report_longtitude").val(myLatlng.lng());
   }
-    
+
   function loadScript() {
     var script = document.createElement("script");
     script.type = "text/javascript";
@@ -29,14 +31,14 @@
     marker.setPosition(location);
     $("#report_latitude").val(location.lat());
     $("#report_longtitude").val(location.lng());
-  }  
+  }
   window.onload = loadScript;
 </script>
 <div class="grid_8">
   <div id="map_canvas"></div>
 </div>
 <div class="grid_4">
-<%= form_for @report do |r| %>
+  <%= form_for @report, :html => {:multipart => true} do |r| %>
     <%= r.label :title %>
     <%= r.text_field :title %>
     <div style="display:none">
@@ -45,6 +47,12 @@
     </div>
     <%= r.label :description %>
     <%= r.text_area :description %>
+
+    <%= r.file_field :photo1 %>
+    <%= r.file_field :photo2 %>
+    <%= r.file_field :photo3 %>
+    <%= r.file_field :photo4 %>
+    <%= r.file_field :photo5 %>
     <%= r.submit "Save" %>
 <% end %>
 </div>

@@ -1,6 +1,14 @@
 body {
 }
 
+ul.images {
+  list-style: none;
+  padding: 0px;
+}
+.images li {
+  margin: 0px;
+}
+
 article {
   background: #222;
   color: #B4B4B4;

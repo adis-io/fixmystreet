@@ -125,6 +125,9 @@ GEM
       faraday (~> 0.5.0)
       multi_json (~> 0.0.4)
     orm_adapter (0.0.4)
+    paperclip (2.3.8)
+      activerecord
+      activesupport
     polyglot (0.3.1)
     rack (1.2.2)
     rack-mount (0.6.14)
@@ -202,6 +205,7 @@ DEPENDENCIES
   devise!
   mysql2
   oa-oauth (= 0.2.0)
+  paperclip (= 2.3.8)
   rails (= 3.0.5)
   remarkable_activerecord (~> 4.0.0.alpha4)
   rspec-rails (>= 2.4.1)

@@ -9,6 +9,7 @@ gem 'sqlite3-ruby','1.3.3', :require => 'sqlite3'
 gem 'devise', :git => "git://github.com/plataformatec/devise.git"
 gem "oa-oauth", '0.2.0', :require => "omniauth/oauth"
 gem 'mysql2'
+gem 'paperclip', '2.3.8'
 
 group :development do
   gem 'thin'

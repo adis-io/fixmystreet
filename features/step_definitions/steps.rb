@@ -23,3 +23,15 @@ end
 When /^I follow image "([^"]*)"$/ do |alt|
   find(:xpath, "//a/img[@alt='#{alt}']/..").click
 end
+
+Then /^there should be reports:$/ do |table|
+  table.hashes.each do |r|
+    report = Report.find_by_title r[:title]
+    report.description.should == r[:description]
+    report.photo1?.should == true
+    report.photo2?.should == true
+    report.photo3?.should == true
+    report.photo4?.should == true
+    report.photo5?.should == true
+  end
+end

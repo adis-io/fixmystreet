@@ -9,8 +9,16 @@ Feature: Add Report
         And I follow "Submit new report"
         And I fill in "Title" with "Report Place"
         And I fill in "Description" with "adfhasdfhasdhfashfashfasjdfhak"
+        And I attach the file "/home/kalys/Desktop/Sparta.jpg" to "report[photo1]"
+        And I attach the file "/home/kalys/Desktop/Sparta.jpg" to "report[photo2]"
+        And I attach the file "/home/kalys/Desktop/Sparta.jpg" to "report[photo3]"
+        And I attach the file "/home/kalys/Desktop/Sparta.jpg" to "report[photo4]"
+        And I attach the file "/home/kalys/Desktop/Sparta.jpg" to "report[photo5]"
         And I press "Save"
-        Then I should be on the "Report Place" report page
+        Then there should be reports:
+          | title        | description                    |
+          | Report Place | adfhasdfhasdhfashfashfasjdfhak |
+        And I should be on the "Report Place" report page
         And I should see "Report Place" 
         And I should see "adfhasdfhasdhfashfashfasjdfhak"
 
