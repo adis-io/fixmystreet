@@ -1,0 +1,17 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+ru:
+  hello: "Привет, "
+  are_you_sure: "Вы уверены?"
+  succesfully_deleted: "Успешно удалено"
+  edit: "Править"
+  delete: "Удалить"
+  permission_error: "У вас нет прав на эту операцию"
+  save: "Сохранить"
+  submit_new_report: "Добавить новый репорт"
+  about: "О нас"
+  contact_us: "Контакты"
+  design_by: "Дизайн от"
+  source_code: "Исходные коды"
+  report_about_bug: "Нашли баг"

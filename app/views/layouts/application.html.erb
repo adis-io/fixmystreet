@@ -24,7 +24,7 @@
         <div class="grid_6 header_right">
           <div id="user_box">
             <% if user_signed_in? %>
-              Hello, <%= current_user.name %>.
+              <%= t(:hello) + current_user.name %>.
               <%=link_to "Logout", destroy_user_session_path() %>
             <% else %>
               <%=link_to image_tag("/images/fb.png", :alt => 'Login with Facebook'), user_omniauth_authorize_path(:facebook) %>
@@ -32,9 +32,9 @@
             <% end %>
           </div>
           <ul id="header_menu">
-            <li><%=link_to "Submit new report", new_report_path %></li>
-            <li><%=link_to "About", about_path %></li>
-            <li><%=link_to "Contact us", contacts_path %></li>
+            <li><%=link_to t(:submit_new_report), new_report_path %></li>
+            <li><%=link_to t(:about), about_path %></li>
+            <li><%=link_to t(:contact_us), contacts_path %></li>
           </ul>
           <div class="clear"></div>
         </div>
@@ -53,15 +53,15 @@
         <a href="http://www.facebook.com/pages/Fixmystreet-Bishkek/215928685090784">Facebook</a><br />
       </div>
       <div class="grid_2">
-        <%=link_to "About", about_path %><br />
-        <%=link_to "Contact us", contacts_path %>
+        <%=link_to t(:about), about_path %><br />
+        <%=link_to t(:contact_us), contacts_path %>
       </div>
       <div class="grid_4">
-        Design by <a href="http://fixmystreet.ca">Fixmystreet.CA</a><br />
+        <%= t(:design_by) %> <a href="http://fixmystreet.ca">Fixmystreet.CA</a><br />
       </div>
       <div class="grid_4">
-        <a href="http://github.com/kalys/fixmystreet">Source code</a><br />
-        <a href="http://github.com/kalys/fixmystreet/issues">Report about bug</a><br />
+        <%= link_to t(:source_code), "http://github.com/kalys/fixmystreet" %><br />
+        <%= link_to t(:report_about_bug), "http://github.com/kalys/fixmystreet/issues" %><br />
         &copy; <a href="http://dolboor.kg">IT Dolboor</a>
       </div>
     </div>

@@ -1,0 +1,6 @@
+<% if user_signed_in? and @report.user == current_user %>
+  <div>
+  <%= link_to t(:edit), edit_report_path(@report) %>
+  <%= link_to t(:delete), report_path(@report), :method => :delete, :confirm => t(:are_you_sure) %>
+  </div>
+<% end %>

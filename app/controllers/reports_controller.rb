@@ -1,19 +1,20 @@
 class ReportsController < ApplicationController
 
-  before_filter :check_auth, :only => [:new, :create]
+  before_filter :check_auth, :only => [:new, :create, :edit, :update]
+  before_filter :find_report, :only => [:show, :edit, :update, :destroy]
+  before_filter :check_perm, :only => [:edit, :update, :destroy]
 
   def index
     @reports = Report.page params[:page]
   end
 
   def show
-    @report = Report.find params[:id]
   end
 
   def new
     @report = Report.new
-    @report.latitude = "34"
-    @report.longtitude = "74"
+    @report.latitude = "42.861118"
+    @report.longtitude = "74.607811"
   end
 
   def create
@@ -32,4 +33,33 @@ class ReportsController < ApplicationController
 
   def contacts
   end
+
+  def edit
+  end
+
+  def update
+    unless @report.update_attributes(params[:report])
+      render :action => "edit" and return
+    end
+    redirect_to report_path @report
+  end
+
+  def destroy
+    @report.delete
+    flash[:notice] = t(:succesfully_deleted)
+    redirect_to reports_path
+  end
+
+  private
+  def find_report
+    @report = Report.find params[:id]
+  end
+
+  def check_perm
+    unless @report.user == current_user
+      flash[:notice] = t(:permission_error)
+      redirect_to reports_path
+    end
+  end
+
 end
