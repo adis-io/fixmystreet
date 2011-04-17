@@ -6,7 +6,7 @@ Feature: Add Report
     Scenario: Add
         Given I logged in
         When I go to the homepage
-        And I follow "Add Report"
+        And I follow "Submit new report"
         And I fill in "Title" with "Report Place"
         And I fill in "Description" with "adfhasdfhasdhfashfashfasjdfhak"
         And I press "Save"
@@ -18,14 +18,14 @@ Feature: Add Report
     Scenario: Add without title
         Given I logged in
         When I go to the home page
-        And I follow "Add Report"
+        And I follow "Submit new report"
         And I fill in "Description" with "adfhasdfhasdhfashfashfasjdfhak"
         And I press "Save"
         Then the "Description" field should contain "adfhasdfhasdhfashfashfasjdfhak"
 
     Scenario: Add unauthentificated
         When I go to the home page
-        And I follow "Add Report"
+        And I follow "Submit new report"
         And I follow "Login with Facebook"
         And I fill in "Title" with "Report Place"
         And I fill in "Description" with "adfhasdfhasdhfashfashfasjdfhak"

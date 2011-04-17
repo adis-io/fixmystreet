@@ -18,6 +18,7 @@ end
 group :development, :test do
   gem 'cucumber-rails'
   gem 'capybara'
+  gem 'capybara-webkit'
   gem 'database_cleaner'
   gem "rspec-rails", ">= 2.4.1"
   gem 'remarkable_activerecord', '~> 4.0.0.alpha4'

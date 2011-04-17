@@ -7,11 +7,9 @@
         mapTypeId: google.maps.MapTypeId.ROADMAP
     }
     var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-    var image = '/images/beachflag.png';
     var beachMarker = new google.maps.Marker({
         position: myLatlng,
-        map: map,
-        icon: image
+        map: map
     });
   }
     

@@ -8,12 +8,10 @@
     }
     var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
     <% @reports.each do |report| %>
-      var image = '/images/beachflag.png';
       var myLatLng = new google.maps.LatLng(<%= report.latitude %>, <%= report.longtitude %>);
       var beachMarker = new google.maps.Marker({
           position: myLatLng,
-          map: map,
-          icon: image
+          map: map
       });
       google.maps.event.addListener(beachMarker, 'click', function() {
         window.location.href = '<%= report_path report %>';

@@ -7,7 +7,7 @@ end
 
 Given /^I logged in$/ do
   visit path_to("the homepage")
-  click_link("Login with Facebook")
+  find(:xpath, "//a/img[@alt='Login with Facebook']/..").click
 end
 
 Then /^there should be a user:$/ do |table|
@@ -18,4 +18,8 @@ Then /^there should be a user:$/ do |table|
       user_hash[key].should == user[key]
     end
   end
+end
+
+When /^I follow image "([^"]*)"$/ do |alt|
+  find(:xpath, "//a/img[@alt='#{alt}']/..").click
 end
