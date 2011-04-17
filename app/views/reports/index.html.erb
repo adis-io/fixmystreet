@@ -9,11 +9,13 @@
     var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
     <% @reports.each do |report| %>
       var myLatLng = new google.maps.LatLng(<%= report.latitude %>, <%= report.longtitude %>);
-      var beachMarker = new google.maps.Marker({
+      var marker = new google.maps.Marker({
           position: myLatLng,
-          map: map
+          map: map,
+          <%= "icon:'/images/green-marker.png'," if report.fixed? %>
+          title: "<%= report.title %>"
       });
-      google.maps.event.addListener(beachMarker, 'click', function() {
+      google.maps.event.addListener(marker, 'click', function() {
         window.location.href = '<%= report_path report %>';
       });
     <% end %>

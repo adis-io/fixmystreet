@@ -44,5 +44,9 @@ class Report < ActiveRecord::Base
 
   # kaminari pagination
   paginates_per 10
+
+  def fixed?
+    self.status == FIXED
+  end
 end
 
