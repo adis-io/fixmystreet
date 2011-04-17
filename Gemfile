@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.5'
+gem 'rails', '3.0.6'
 
 # Bundle edge Rails instead: gem 'rails', :git =>
 # 'git://github.com/rails/rails.git'
@@ -10,6 +10,7 @@ gem 'devise', :git => "git://github.com/plataformatec/devise.git"
 gem "oa-oauth", '0.2.0', :require => "omniauth/oauth"
 gem 'mysql2'
 gem 'paperclip', '2.3.8'
+gem 'kaminari'
 
 group :development do
   gem 'thin'
