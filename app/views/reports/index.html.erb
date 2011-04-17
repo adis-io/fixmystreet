@@ -32,7 +32,13 @@
 <div class="grid_4">
 <ul id="report_list">
     <% @reports.each do |report| %>
-      <li><h5><%= link_to report.title, report_path(report) %></h5></li>
+      <li><h5><%= link_to report.title, report_path(report) %></h5>
+      <%= image_tag report.photo1.url(:thumb) if report.photo1? %>
+      <%= image_tag report.photo2.url(:thumb) if report.photo2? %>
+      <%= image_tag report.photo3.url(:thumb) if report.photo3? %>
+      <%= image_tag report.photo4.url(:thumb) if report.photo4? %>
+      <%= image_tag report.photo5.url(:thumb) if report.photo5? %>
+      </li>
     <% end %>
 </ul>
 </div>
