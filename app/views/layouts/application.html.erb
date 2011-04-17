@@ -25,7 +25,7 @@
           <div id="user_box">
             <% if user_signed_in? %>
               <%= t(:hello) + current_user.name %>.
-              <%=link_to "Logout", destroy_user_session_path() %>
+              <%=link_to t(:logout), destroy_user_session_path() %>
             <% else %>
               <%=link_to image_tag("/images/fb.png", :alt => 'Login with Facebook'), user_omniauth_authorize_path(:facebook) %>
               <%=link_to image_tag("/images/twitter.png", :alt => 'Login with Twitter'), user_omniauth_authorize_path(:twitter) %>

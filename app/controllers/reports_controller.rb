@@ -1,11 +1,13 @@
 class ReportsController < ApplicationController
 
   before_filter :check_auth, :only => [:new, :create, :edit, :update]
-  before_filter :find_report, :only => [:show, :edit, :update, :destroy]
-  before_filter :check_perm, :only => [:edit, :update, :destroy]
+  before_filter :find_report, :only => [:show, :edit, :update,
+    :destroy, :fixed]
+  before_filter :check_perm, :only => [:edit, :update, :destroy,
+    :fixed]
 
   def index
-    @reports = Report.page params[:page]
+    @reports = Report.order("id desc").page params[:page]
   end
 
   def show
@@ -48,6 +50,13 @@ class ReportsController < ApplicationController
     @report.delete
     flash[:notice] = t(:succesfully_deleted)
     redirect_to reports_path
+  end
+
+  def fixed
+    @report.status = Report::FIXED
+    @report.save
+    flash[:notice] = t(:status_updated)
+    redirect_to report_path @report and return
   end
 
   private

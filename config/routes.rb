@@ -13,7 +13,11 @@ Fixmystreet::Application.routes.draw do
   # This route can be invoked with purchase_url(:id => product.id)
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
-  resources :reports
+  resources :reports do
+    member do
+     get 'fixed'
+    end
+  end
   match 'about' => 'reports#about', :as => :about
   match 'contacts' => 'reports#contacts', :as => :contacts
 
