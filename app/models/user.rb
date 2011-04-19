@@ -9,6 +9,12 @@ class User < ActiveRecord::Base
 
   has_many :reports
 
+  has_and_belongs_to_many :roles
+
+  def role?(role)
+    return !!self.roles.find_by_name(role.to_s.camelize)
+  end
+
   def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
     data = access_token['extra']['user_hash']
     user = User.find_by_facebook_id(data["id"])

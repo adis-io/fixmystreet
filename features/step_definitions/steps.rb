@@ -35,3 +35,13 @@ Then /^there should be reports:$/ do |table|
     report.photo5?.should == true
   end
 end
+
+Given /^a user "([^"]*)"$/ do |email|
+  User.create(:email => email)
+end
+
+Given /^a user "([^"]*)" with role "([^"]*)"$/ do |email, role|
+  u = User.find_by_email(email)
+  r = Role.create(:name => role)
+  u.roles << r
+end

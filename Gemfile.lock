@@ -41,6 +41,7 @@ GEM
     arel (2.0.9)
     bcrypt-ruby (2.1.4)
     builder (2.1.2)
+    cancan (1.6.4)
     capistrano (2.5.20)
       highline
       highline
@@ -91,6 +92,7 @@ GEM
       rake (>= 0.8.7)
     gherkin (2.3.5)
       json (>= 1.4.6)
+    headless (0.1.0)
     highline (1.6.1)
     i18n (0.5.0)
     json (1.5.1)
@@ -199,12 +201,14 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  cancan
   capistrano
   capybara
   capybara-webkit
   cucumber-rails
   database_cleaner
   devise!
+  headless
   kaminari
   mysql2
   oa-oauth (= 0.2.0)

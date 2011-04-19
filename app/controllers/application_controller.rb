@@ -14,4 +14,9 @@ class ApplicationController < ActionController::Base
       super
     end
   end
+
+  rescue_from CanCan::AccessDenied do |exception|
+    flash[:error] = t :permission_error
+    redirect_to root_path
+  end
 end

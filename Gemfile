@@ -11,6 +11,7 @@ gem "oa-oauth", '0.2.0', :require => "omniauth/oauth"
 gem 'mysql2'
 gem 'paperclip', '2.3.8'
 gem 'kaminari'
+gem 'cancan'
 
 group :development do
   gem 'thin'
@@ -21,6 +22,7 @@ group :development, :test do
   gem 'cucumber-rails'
   gem 'capybara'
   gem 'capybara-webkit'
+  gem 'headless'
   gem 'database_cleaner'
   gem "rspec-rails", ">= 2.4.1"
   gem 'remarkable_activerecord', '~> 4.0.0.alpha4'

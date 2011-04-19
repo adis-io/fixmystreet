@@ -14,6 +14,10 @@ module NavigationHelpers
       report = Report.find_by_title $1
       report_path report
 
+    when /the "(.*)" report edit page/
+      report = Report.find_by_title $1
+      edit_report_path report
+
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

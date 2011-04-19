@@ -65,10 +65,7 @@ class ReportsController < ApplicationController
   end
 
   def check_perm
-    unless @report.user == current_user
-      flash[:notice] = t(:permission_error)
-      redirect_to reports_path
-    end
+    authorize! :manage,  @report
   end
 
 end

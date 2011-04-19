@@ -21,6 +21,7 @@ require 'capybara/session'
 # prefer to use XPath just remove this line and adjust any selectors in your
 # steps to use the XPath syntax.
 Capybara.default_selector = :css
+Capybara.javascript_driver = :webkit
 
 # If you set this to false, any error raised from within your app will bubble 
 # up to your step definition and out to cucumber unless you catch it somewhere
@@ -73,8 +74,7 @@ OmniAuth.config.mock_auth[:twitter] = {
   'uid' => '12345',
   'user_info' => {
       'id' => '12345',
-      'link' => 'http://facebook.com/osmonov',
-      'email' => 'kalys@osmonov.com',
+      'link' => 'http://twitter.com/kalysosmonov',
       'name' => 'Kalys Osmonov',
       'gender' => 'Male',
       'urls' => {
@@ -83,6 +83,15 @@ OmniAuth.config.mock_auth[:twitter] = {
       }
   }
 }
+
+if Capybara.current_driver == :webkit
+  headless = Headless.new
+  headless.start
+
+  at_exit do
+    headless.destroy
+  end
+end
 
 Before do
   load_schema = lambda {
