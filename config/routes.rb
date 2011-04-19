@@ -20,6 +20,7 @@ Fixmystreet::Application.routes.draw do
   end
   match 'about' => 'reports#about', :as => :about
   match 'contacts' => 'reports#contacts', :as => :contacts
+  match 'feed' => 'reports#feed', :as => :feed
 
   # Sample resource route with options:
   #   resources :products do

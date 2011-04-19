@@ -59,6 +59,16 @@ class ReportsController < ApplicationController
     redirect_to report_path @report and return
   end
 
+  def feed
+    @new_reports = Report.where(:status => Report::NEW).order("id DESC").limit(10)
+    @fixed_reports = Report.where(:status => Report::FIXED).order("id DESC").limit(10)
+    puts @new_reports
+    puts @fixed_reports
+    respond_to do |format|
+      format.rss { render :layout => false }
+    end
+  end
+
   private
   def find_report
     @report = Report.find params[:id]
