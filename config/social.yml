@@ -1,9 +1,9 @@
 twitter:
-  consumer_key: ""
-  consumer_secret: ""
-  oauth_token: ""
+  consumer_key:       "WTG1ISUG4xVT9TUqiowcQ"
+  consumer_secret:    "VPGUkZb3XiRT46KkPp0c8CLV6YtISXqAkclQZ8EMvpo"
+  oauth_token:        ""
   oauth_token_secret: ""
 
 facebook:
-  consumer_key: ""
-  consumer_secret: ""
+  consumer_key:       "181196291926737"
+  consumer_secret:    "429d7ee9e41bd1d7e7da492d49b1d0ac"
