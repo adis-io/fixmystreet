@@ -27,6 +27,8 @@ class ReportsController < ApplicationController
     unless @report.valid?
       render :action => "new" and return
     end
+
+    tweet_about @report
     redirect_to report_path @report
   end
 
@@ -76,6 +78,21 @@ class ReportsController < ApplicationController
 
   def check_perm
     authorize! :manage,  @report
+  end
+
+  def tweet_about( report )
+    if RAILS_ENV == "production"
+      Twitter.configure do |config|
+        config.consumer_key = SOCIAL_NETWORK_CONFIG["twitter"]["consumer_key"]
+        config.consumer_secret = SOCIAL_NETWORK_CONFIG["twitter"]["consumer_secret"]
+        config.oauth_token = SOCIAL_NETWORK_CONFIG["twitter"]["oauth_token"]
+        config.oauth_token_secret = SOCIAL_NETWORK_CONFIG["twitter"]["oauth_token_secret"]
+      end
+      client = Twitter::Client.new
+      text = "#{report_url(report)} #{report.title}"
+      text = text[0...140]
+      client.update(text)
+    end
   end
 
 end
