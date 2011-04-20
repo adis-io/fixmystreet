@@ -29,6 +29,7 @@ class ReportsController < ApplicationController
     end
 
     tweet_about @report
+    facebook_about @report
     redirect_to report_path @report
   end
 
@@ -94,6 +95,18 @@ class ReportsController < ApplicationController
       client.update(text)
     end
   rescue
+  end
+
+  def facebook_about(report)
+    if RAILS_ENV == "production"
+      client = HTTPClient.new
+      rsp = client.post("https://graph.facebook.com/#{SOCIAL_NETWORK_CONFIG["facebook"]["page_id"]}/feed?access_token=#{URI.escape SOCIAL_NETWORK_CONFIG['facebook']['oauth_token']}",
+          {:access_token => SOCIAL_NETWORK_CONFIG["facebook"]["oauth_token"],
+           :link => report_url(report),
+           :name => report.title
+          }
+        )
+    end
   end
 
 end

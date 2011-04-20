@@ -184,5 +184,6 @@ Devise.setup do |config|
   # end
   SOCIAL_NETWORK_CONFIG = YAML.load_file("#{RAILS_ROOT}/config/social.yml")
   config.omniauth :twitter, SOCIAL_NETWORK_CONFIG["twitter"]["consumer_key"], SOCIAL_NETWORK_CONFIG["twitter"]["consumer_secret"]
-  config.omniauth :facebook, SOCIAL_NETWORK_CONFIG["facebook"]["consumer_key"], SOCIAL_NETWORK_CONFIG["facebook"]["consumer_secret"]
+  config.omniauth :facebook, SOCIAL_NETWORK_CONFIG["facebook"]["consumer_key"], SOCIAL_NETWORK_CONFIG["facebook"]["consumer_secret"],
+    :scope => 'email,offline_access,publish_stream'
 end

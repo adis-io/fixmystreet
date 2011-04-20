@@ -7,3 +7,5 @@ twitter:
 facebook:
   consumer_key:       ""
   consumer_secret:    ""
+  oauth_token:        ""
+  page_id:            ""
