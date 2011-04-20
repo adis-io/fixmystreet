@@ -8,7 +8,7 @@ set :application, "fixmystreet"
 set :repository,  "git://github.com/kalys/fixmystreet.git"
 
 set :scm, :git
-set :branch, "develop"
+set :branch, "kg"
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
 server "fixmystreet.kg", :app, :web, :db, :primary => true
