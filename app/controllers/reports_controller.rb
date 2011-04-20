@@ -93,6 +93,7 @@ class ReportsController < ApplicationController
       text = text[0...140]
       client.update(text)
     end
+  rescue
   end
 
 end
