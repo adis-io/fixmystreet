@@ -7,5 +7,5 @@ tmp/**/*
 .devise.rb
 Capfile
 config/deploy.rb
-config/social.rb
+config/social.yml
 public/system
