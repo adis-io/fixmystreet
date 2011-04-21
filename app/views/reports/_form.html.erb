@@ -51,7 +51,11 @@
     </div>
     <%= r.label :description %>
     <%= r.text_area :description %>
+    <label for="video_url"><%= t :paste_video_url %></label>
+    <%= text_field_tag :video_url %><br />
+    <%= t :video_url_example %>
 
+    <%= t :upload_images %>
     <%= r.file_field :photo1 %>
     <%= r.file_field :photo2 %>
     <%= r.file_field :photo3 %>
