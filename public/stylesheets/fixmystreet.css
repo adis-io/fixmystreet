@@ -102,3 +102,8 @@ footer {
 #report_list li h5 {
   margin-bottom: 5px;
 }
+
+textarea#report_description {
+  width: 300px;
+  height: 200px;
+}
