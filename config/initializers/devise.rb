@@ -182,7 +182,7 @@ Devise.setup do |config|
   #   manager.intercept_401 = false
   #   manager.default_strategies(:scope => :user).unshift :some_external_strategy
   # end
-  SOCIAL_NETWORK_CONFIG = YAML.load_file("#{RAILS_ROOT}/config/social.yml")
+  SOCIAL_NETWORK_CONFIG = YAML.load_file("#{Rails.root.to_s}/config/social.yml")
   config.omniauth :twitter, SOCIAL_NETWORK_CONFIG["twitter"]["consumer_key"], SOCIAL_NETWORK_CONFIG["twitter"]["consumer_secret"]
   config.omniauth :facebook, SOCIAL_NETWORK_CONFIG["facebook"]["consumer_key"], SOCIAL_NETWORK_CONFIG["facebook"]["consumer_secret"],
     :scope => 'email,offline_access,publish_stream'
