@@ -19,4 +19,14 @@ class ApplicationController < ActionController::Base
     flash[:error] = t :permission_error
     redirect_to root_path
   end
+
+  def set_locale
+    if params[:locale].nil?
+      session[:locale] = I18n.locale if session[:locale].nil?
+    else
+      session[:locale] = params[:locale]
+    end
+    I18n.locale = session[:locale]
+  end
+
 end

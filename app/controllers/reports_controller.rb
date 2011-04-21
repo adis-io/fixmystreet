@@ -1,5 +1,6 @@
 class ReportsController < ApplicationController
 
+  before_filter :set_locale
   before_filter :check_auth, :only => [:new, :create, :edit, :update]
   before_filter :find_report, :only => [:show, :edit, :update,
     :destroy, :fixed]
@@ -82,7 +83,7 @@ class ReportsController < ApplicationController
   end
 
   def tweet_about( report )
-    if RAILS_ENV == "production"
+    if Rails.env == "production"
       Twitter.configure do |config|
         config.consumer_key = SOCIAL_NETWORK_CONFIG["twitter"]["consumer_key"]
         config.consumer_secret = SOCIAL_NETWORK_CONFIG["twitter"]["consumer_secret"]
@@ -98,7 +99,7 @@ class ReportsController < ApplicationController
   end
 
   def facebook_about(report)
-    if RAILS_ENV == "production"
+    if Rails.env == "production"
       client = HTTPClient.new
       rsp = client.post("https://graph.facebook.com/#{SOCIAL_NETWORK_CONFIG["facebook"]["page_id"]}/feed?access_token=#{URI.escape SOCIAL_NETWORK_CONFIG['facebook']['oauth_token']}",
           {:access_token => SOCIAL_NETWORK_CONFIG["facebook"]["oauth_token"],
@@ -108,5 +109,4 @@ class ReportsController < ApplicationController
         )
     end
   end
-
 end
