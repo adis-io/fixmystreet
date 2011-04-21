@@ -2,7 +2,7 @@
   function initialize() {
     var myLatlng = new google.maps.LatLng(<%= "#{@report.latitude}, #{@report.longtitude}" %>);
     var myOptions = {
-        zoom: 12,
+        zoom: 15,
         center: myLatlng,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     }
