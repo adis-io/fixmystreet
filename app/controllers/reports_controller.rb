@@ -92,7 +92,7 @@ class ReportsController < ApplicationController
       client = Twitter::Client.new
       text = "#{report_url(report)} #{report.title}"
       text = text[0...140]
-      client.update text, :lat => report.latitude, :long => report.longtitude
+      client.update text
     end
   rescue
   end
