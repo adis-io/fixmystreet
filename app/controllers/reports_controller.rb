@@ -26,6 +26,7 @@ class ReportsController < ApplicationController
     @report.status = Report::NEW
     @report.update_attributes params[:report]
     unless @report.valid?
+      flash[:error] = @report.errors.full_messages.to_sentence
       render :action => "new" and return
     end
 
@@ -45,6 +46,7 @@ class ReportsController < ApplicationController
 
   def update
     unless @report.update_attributes(params[:report])
+      flash[:error] = @report.errors.full_messages.to_sentence
       render :action => "edit" and return
     end
     redirect_to report_path @report
@@ -66,8 +68,6 @@ class ReportsController < ApplicationController
   def feed
     @new_reports = Report.where(:status => Report::NEW).order("id DESC").limit(10)
     @fixed_reports = Report.where(:status => Report::FIXED).order("id DESC").limit(10)
-    puts @new_reports
-    puts @fixed_reports
     respond_to do |format|
       format.rss { render :layout => false }
     end
@@ -83,7 +83,7 @@ class ReportsController < ApplicationController
   end
 
   def tweet_about( report )
-    if Rails.env == "production"
+    if Rails.env.production?
       Twitter.configure do |config|
         config.consumer_key = SOCIAL_NETWORK_CONFIG["twitter"]["consumer_key"]
         config.consumer_secret = SOCIAL_NETWORK_CONFIG["twitter"]["consumer_secret"]
@@ -99,7 +99,7 @@ class ReportsController < ApplicationController
   end
 
   def facebook_about(report)
-    if Rails.env == "production"
+    if Rails.env.production?
       client = HTTPClient.new
       rsp = client.post("https://graph.facebook.com/#{SOCIAL_NETWORK_CONFIG["facebook"]["page_id"]}/feed?access_token=#{URI.escape SOCIAL_NETWORK_CONFIG['facebook']['oauth_token']}",
           {:access_token => SOCIAL_NETWORK_CONFIG["facebook"]["oauth_token"],
@@ -109,4 +109,5 @@ class ReportsController < ApplicationController
         )
     end
   end
+
 end

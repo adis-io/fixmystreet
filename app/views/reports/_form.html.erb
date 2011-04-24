@@ -50,9 +50,9 @@
       <%= r.text_field  :longtitude %>
     </div>
     <%= r.label :description %>
-    <%= r.text_area :description %>
-    <label for="video_url"><%= t :paste_video_url %></label>
-    <%= text_field_tag :video_url %><br />
+    <%= r.text_area :description %><br />
+    <%= r.label :video_url %>
+    <%= r.text_field :video_url %><br />
     <%= t :video_url_example %>
 
     <%= t :upload_images %>

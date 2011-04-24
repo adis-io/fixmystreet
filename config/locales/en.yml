@@ -18,3 +18,15 @@ en:
   fixed: "Fixed"
   status_updated: "Status updated"
   subscribe_rss: "Subscribe to RSS"
+  paste_video_url: "Paste video url"
+  video_url_example: "For example, 'http://youtube.com/?watch?v=dQw4w9WgXcQ'"
+  upload_images: "Upload pictures"
+  notice: "Notice"
+  warning: "Warning"
+  error: "Error"
+  link_to_video: "Link to video"
+
+  activerecord:
+    attributes:
+      report:
+        video_url: "Link to video"

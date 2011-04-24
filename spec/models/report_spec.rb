@@ -6,7 +6,7 @@ describe Report do
   }
 
   it { should allow_mass_assignment_of :title,
-    :description, :latitude, :longtitude, :user,
+    :description, :latitude, :longtitude, :user, :video_url,
     :photo1, :photo2, :photo3, :photo4, :photo5
   }
 

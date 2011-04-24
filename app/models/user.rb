@@ -41,7 +41,6 @@ class User < ActiveRecord::Base
 
   def self.find_for_twitter(access_token, signed_in_resource=nil)
     data = access_token['user_info']
-    puts data.inspect
     user = User.find_by_twitter_id(access_token['uid'])
     # if we already have such user
     return user if user

@@ -19,9 +19,13 @@ ru:
   paste_video_url: "Вставить ссылку на видео ролик"
   video_url_example: "Например, 'http://blive.kg/video:46620/' или 'http://youtube.com/?watch?v=dQw4w9WgXcQ'"
   upload_images: "Загрузите картинки"
+  notice: "Заметка"
+  warning: "Предупреждение"
+  error: "Ошибка"
 
   activerecord:
     attributes:
       report:
         title: "Название"
         description: "Описание"
+        video_url: "Ссылка на видео"

@@ -17,7 +17,7 @@ class Report < ActiveRecord::Base
   validates_uniqueness_of :title
 
   # accessibility
-  attr_accessible :title, :description, :latitude, :longtitude, :user,
+  attr_accessible :title, :description, :latitude, :longtitude, :user, :video_url,
     :photo1, :photo2, :photo3, :photo4, :photo5
 
   # relations
