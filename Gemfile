@@ -14,9 +14,9 @@ gem 'kaminari', '0.10.4'
 gem 'cancan', '1.6.4'
 gem 'twitter', '1.2.0'
 gem 'httpclient', '2.2.0.1'
+gem 'thin'
 
 group :development do
-  gem 'thin'
   gem 'capistrano'
 end
 
