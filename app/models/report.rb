@@ -9,7 +9,7 @@ class Report < ActiveRecord::Base
 
   # validation rules
   validates_presence_of :title, :description, :latitude, :longtitude,
-    :user
+    :user, :city
 
   validates_length_of :title,       :minimum => 5,  :maximum => 250
   validates_length_of :description, :minimum => 20, :maximum => 5000
@@ -17,7 +17,8 @@ class Report < ActiveRecord::Base
   validates_uniqueness_of :title
 
   # accessibility
-  attr_accessible :title, :description, :latitude, :longtitude, :user, :video_url,
+  attr_accessible :title, :description, :latitude, :longtitude,
+    :user, :video_url, :city_id,
     :photo1, :photo2, :photo3, :photo4, :photo5
 
   # relations
@@ -49,5 +50,7 @@ class Report < ActiveRecord::Base
   def fixed?
     self.status == FIXED
   end
+
+  scope :located_in, lambda { |city| where(:city_id => city) }
 end
 

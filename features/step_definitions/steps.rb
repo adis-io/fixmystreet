@@ -1,7 +1,22 @@
+
+DOMAIN = "example.com"
+PORT = Capybara.server_port
+
+Given /^I am in subdomain "(.+)"$/ do | subdomain|
+  if Capybara.current_driver == :selenium
+    Capybara.app_host = "#{subdomain}.#{DOMAIN}:#{PORT}"
+  else
+    Capybara.default_host = "#{subdomain}.#{DOMAIN}"
+    switch_session(subdomain)
+    visit("http://#{subdomain}.#{DOMAIN}")
+  end
+end
+
 Given /^a reports:$/ do |table|
   table.hashes.each do |report|
+    report[:city_id] = City.find_by_name(report[:city]).id
     report[:user] = User.find_by_email report[:user]
-    Report.create report
+    Report.create! report
   end
 end
 
@@ -44,3 +59,18 @@ Given /^a user "([^"]*)" with role "([^"]*)"$/ do |email, role|
   r = Role.create(:name => role)
   u.roles << r
 end
+
+Given /^a country "([^"]*)"$/ do |country|
+  Country.create! :name => country, :lat => 1, :long => 1,
+    :zoom => 1
+end
+
+Given /^cities "([^"]*)" in "([^"]*)"$/ do |cities, country|
+  country = Country.find_by_name(country)
+  cities.split(", ").each do |city|
+    City.create! :name => city, :country_id => country,
+      :lat => 1, :long => 1, :zoom => 1,
+      :subdomain => city.downcase
+  end
+end
+

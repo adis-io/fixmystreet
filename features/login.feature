@@ -3,6 +3,10 @@ Feature: Logit with facebook
     As a user 
     I want to be able to login with facebook or twitter
 
+    Background:
+        Given a country "Kyrgyzstan"
+        And cities "Bishkek, Osh, Karabalta" in "Kyrgyzstan"
+
     Scenario: Login with facebook
         When I go to the homepage
         And I follow image "Login with Facebook"

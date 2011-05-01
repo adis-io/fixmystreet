@@ -1,5 +1,6 @@
 class ReportsController < ApplicationController
 
+  before_filter :fetch_city
   before_filter :set_locale
   before_filter :check_auth, :only => [:new, :create, :edit, :update]
   before_filter :find_report, :only => [:show, :edit, :update,
@@ -8,7 +9,7 @@ class ReportsController < ApplicationController
     :fixed]
 
   def index
-    @reports = Report.order("id desc").page params[:page]
+    @reports = Report.located_in(@city).order("id desc").page params[:page]
   end
 
   def show
@@ -24,6 +25,7 @@ class ReportsController < ApplicationController
     @report = Report.new
     @report.user = current_user
     @report.status = Report::NEW
+    @report.city = @city
     @report.update_attributes params[:report]
     unless @report.valid?
       flash[:error] = @report.errors.full_messages.to_sentence
@@ -45,6 +47,7 @@ class ReportsController < ApplicationController
   end
 
   def update
+    @report.city = @city
     unless @report.update_attributes(params[:report])
       flash[:error] = @report.errors.full_messages.to_sentence
       render :action => "edit" and return

@@ -3,9 +3,14 @@ Feature: Add Report
     As citizen of city
     I want to add problem place information
 
+    Background:
+        Given a country "Kyrgyzstan"
+        And cities "Bishkek, Osh, Karabalta" in "Kyrgyzstan"
+
     Scenario: Add
         Given I logged in
         When I go to the homepage
+        And I follow "Bishkek"
         And I follow "Submit new report"
         And I fill in "Title" with "Report Place"
         And I fill in "Description" with "adfhasdfhasdhfashfashfasjdfhak"

@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  before_filter :fetch_city
+
   def check_auth
     unless user_signed_in?
       session[:redirect_to] = request.url
@@ -21,12 +23,24 @@ class ApplicationController < ActionController::Base
   end
 
   def set_locale
-    if params[:locale].nil?
-      session[:locale] = I18n.locale if session[:locale].nil?
-    else
-      session[:locale] = params[:locale]
-    end
-    I18n.locale = session[:locale]
+    session[:locale] = params[:locale] if params[:locale] and %(ru en).include? params[:locale]
+    I18n.locale = session[:locale] if session[:locale].nil?
   end
 
+  def fetch_city
+    if current_subdomain
+      @city = City.find_by_subdomain(current_subdomain)
+      redirect_to "/404.html" and return unless @city
+      session[:city] = @city.subdomain
+    elsif session[:city]
+      @city = City.find_by_subdomain(session[:city])
+    elsif
+      @city = City.find_by_subdomain(Country.first.default_city)
+      session[:city] = @city.subdomain
+    else
+      @city = Country.first.cities.first
+      session[:city] = @city.subdomain
+    end
+    redirect_to root_path and return unless @city
+  end
 end

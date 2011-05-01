@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110501080720) do
+ActiveRecord::Schema.define(:version => 20110501182213) do
 
   create_table "cities", :force => true do |t|
     t.string   "name"
@@ -20,7 +20,10 @@ ActiveRecord::Schema.define(:version => 20110501080720) do
     t.integer  "country_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "subdomain"
   end
+
+  add_index "cities", ["subdomain"], :name => "index_cities_on_subdomain", :unique => true
 
   create_table "countries", :force => true do |t|
     t.string   "name"
@@ -29,7 +32,23 @@ ActiveRecord::Schema.define(:version => 20110501080720) do
     t.integer  "zoom"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "default_city_id"
   end
+
+  add_index "countries", ["default_city_id"], :name => "index_countries_on_default_city_id"
+
+  create_table "rails_admin_histories", :force => true do |t|
+    t.string   "message"
+    t.string   "username"
+    t.integer  "item"
+    t.string   "table"
+    t.integer  "month",      :limit => 2
+    t.integer  "year",       :limit => 5
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_histories_on_item_and_table_and_month_and_year"
 
   create_table "reports", :force => true do |t|
     t.string   "title"

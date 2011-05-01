@@ -3,12 +3,17 @@ Feature: Update report
     As a citizen of my city
     I want to be able to update my reports
 
+    Background:
+        Given a country "Kyrgyzstan"
+        And cities "Bishkek, Osh, Karabalta" in "Kyrgyzstan"
+
     Scenario: Update report as owner
       Given I logged in
       And a reports:
-        | title              | description             | latitude | longtitude |  user              |
-        | Traffic            | asdfsfasasdfasdfasdfad  | 1        | 1          |  kalys@osmonov.com |
+        | title              | description             | latitude | longtitude |  user              | city    |
+        | Traffic            | asdfsfasasdfasdfasdfad  | 1        | 1          |  kalys@osmonov.com | Bishkek |
       When I go to the home page
+      And I follow "Bishkek"
       And I follow "Traffic"
       And I follow "Edit"
       And I fill in "Title" with "Traffic light"
@@ -22,9 +27,10 @@ Feature: Update report
       Given I logged in
       And a user "test@fixmystreet.kg"
       And a reports:
-        | title              | description             | latitude | longtitude | user                |
-        | Traffic            | asdfsfasasdfasdfasdfad  | 1        | 1          | test@fixmystreet.kg |
+        | title              | description             | latitude | longtitude | user                | city    |
+        | Traffic            | asdfsfasasdfasdfasdfad  | 1        | 1          | test@fixmystreet.kg | Bishkek |
       When I go to the home page
+      And I follow "Bishkek"
       And I follow "Traffic"
       Then I should not see "Edit"
       When I go to the "Traffic" report edit page
@@ -37,9 +43,10 @@ Feature: Update report
       And a user "test@fixmystreet.kg"
       And a user "kalys@osmonov.com" with role "Moderator"
       And a reports:
-        | title              | description             | latitude | longtitude | user                |
-        | Traffic            | asdfsfasasdfasdfasdfad  | 1        | 1          | test@fixmystreet.kg |
+        | title              | description             | latitude | longtitude | user                | city    |
+        | Traffic            | asdfsfasasdfasdfasdfad  | 1        | 1          | test@fixmystreet.kg | Bishkek |
       When I go to the home page
+      And I follow "Bishkek"
       And I follow "Traffic"
       And I follow "Edit"
       And I fill in "Title" with "Traffic light"
@@ -54,9 +61,10 @@ Feature: Update report
       And a user "test@fixmystreet.kg"
       And a user "kalys@osmonov.com" with role "Admin"
       And a reports:
-        | title              | description             | latitude | longtitude | user                |
-        | Traffic            | asdfsfasasdfasdfasdfad  | 1        | 1          | test@fixmystreet.kg |
+        | title              | description             | latitude | longtitude | user                | city    |
+        | Traffic            | asdfsfasasdfasdfasdfad  | 1        | 1          | test@fixmystreet.kg | Bishkek |
       When I go to the home page
+      And I follow "Bishkek"
       And I follow "Traffic"
       And I follow "Edit"
       And I fill in "Title" with "Traffic light"
