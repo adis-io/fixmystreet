@@ -14,18 +14,15 @@ gem 'kaminari', '0.10.4'
 gem 'cancan', '1.6.4'
 gem 'twitter', '1.2.0'
 gem 'httpclient', '2.2.0.1'
-#gem 'ca_embed', :git => 'git://github.com/kalys/ca_embed.git'
-gem 'ca_embed', :path => '~/projects/ca_embed'
+gem 'thin'
 
 group :development do
-  gem 'thin'
   gem 'capistrano'
 end
 
 group :development, :test do
   gem 'cucumber-rails'
   gem 'capybara'
-  gem 'capybara-webkit'
   gem 'headless'
   gem 'database_cleaner'
   gem "rspec-rails"

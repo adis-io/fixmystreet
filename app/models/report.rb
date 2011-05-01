@@ -22,6 +22,7 @@ class Report < ActiveRecord::Base
 
   # relations
   belongs_to :user
+  belongs_to :city
 
   # paperclip
   medium_style = "300x150#"

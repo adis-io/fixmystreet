@@ -10,11 +10,11 @@ Feature: Add Report
         And I fill in "Title" with "Report Place"
         And I fill in "Description" with "adfhasdfhasdhfashfashfasjdfhak"
         And I fill in "Link to video" with "http://blive.kg/video:46620/"
-        And I attach the file "/home/kalys/Desktop/Sparta.jpg" to "report[photo1]"
-        And I attach the file "/home/kalys/Desktop/Sparta.jpg" to "report[photo2]"
-        And I attach the file "/home/kalys/Desktop/Sparta.jpg" to "report[photo3]"
-        And I attach the file "/home/kalys/Desktop/Sparta.jpg" to "report[photo4]"
-        And I attach the file "/home/kalys/Desktop/Sparta.jpg" to "report[photo5]"
+        And I attach the file "/Users/kalysosmonov/projects/fixmystreet/spec/fixtures/aoeu.jpg" to "report[photo1]"
+        And I attach the file "/Users/kalysosmonov/projects/fixmystreet/spec/fixtures/aoeu.jpg" to "report[photo2]"
+        And I attach the file "/Users/kalysosmonov/projects/fixmystreet/spec/fixtures/aoeu.jpg" to "report[photo3]"
+        And I attach the file "/Users/kalysosmonov/projects/fixmystreet/spec/fixtures/aoeu.jpg" to "report[photo4]"
+        And I attach the file "/Users/kalysosmonov/projects/fixmystreet/spec/fixtures/aoeu.jpg" to "report[photo5]"
         And I press "Save"
         Then there should be reports:
           | title        | description                    |

@@ -10,7 +10,26 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110422175316) do
+ActiveRecord::Schema.define(:version => 20110501080720) do
+
+  create_table "cities", :force => true do |t|
+    t.string   "name"
+    t.string   "lat"
+    t.string   "long"
+    t.integer  "zoom"
+    t.integer  "country_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "countries", :force => true do |t|
+    t.string   "name"
+    t.string   "lat"
+    t.string   "long"
+    t.integer  "zoom"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "reports", :force => true do |t|
     t.string   "title"
@@ -42,6 +61,7 @@ ActiveRecord::Schema.define(:version => 20110422175316) do
     t.datetime "photo5_updated_at"
     t.integer  "status"
     t.string   "video_url"
+    t.integer  "city_id"
   end
 
   create_table "roles", :force => true do |t|

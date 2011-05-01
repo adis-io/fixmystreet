@@ -1,22 +1,18 @@
 require "bundler/capistrano"
-$:.unshift(File.expand_path('./lib', ENV['rvm_path'])) # Add RVM's lib directory to the load path.
-require "rvm/capistrano"                  # Load RVM's capistrano plugin.
 
-set :rvm_ruby_string, '1.9.2'        # Or whatever env you want it to run in.
-set :using_rvm, true
 set :application, "fixmystreet"
-set :repository,  "git://github.com/kalys/fixmystreet.git"
+set :repository,  "/home/sv4/repo.git/"
+set :local_repository,  "sv4@fixmystreet.kg:repo.git"
 
 set :scm, :git
 set :branch, "kg"
-# Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
 server "fixmystreet.kg", :app, :web, :db, :primary => true
 
-set :deploy_to, "/home/rsskg/fixmystreet.kg"
+set :deploy_to, "/home/sv4/fixmystreet.kg"
 
-set :user, "rsskg"
-set :group, "rsskg"
+set :user, "sv4"
+set :group, "users"
 set :use_sudo, false
 
 namespace :deploy do
