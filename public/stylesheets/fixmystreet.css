@@ -107,3 +107,7 @@ textarea#report_description {
   width: 300px;
   height: 200px;
 }
+
+#country_map_canvas {
+    height: 500px;
+}

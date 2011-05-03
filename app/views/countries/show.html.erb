@@ -1,12 +1,25 @@
 <script>
   function initialize() {
-    var myLatlng = new google.maps.LatLng(42.861118,74.607811);
+    var myLatlng = new google.maps.LatLng(<%= "#{@country.lat},#{@country.long}" %>);
     var myOptions = {
-        zoom: 11,
+        zoom: <%= @country.zoom %>,
         center: myLatlng,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     }
-    var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+    var map = new google.maps.Map(document.getElementById("country_map_canvas"), myOptions);
+
+    var city_ll;
+    var marker;
+    <% @country.cities.each do |city| %>
+      city_ll = new google.maps.LatLng(<%= "#{city.lat},#{city.long}" %>);
+      marker = new google.maps.Marker({
+        position: city_ll,
+        map: map
+      });
+      google.maps.event.addListener(marker, 'click', function() {
+        window.location.href = '<%= reports_url :subdomain => city.subdomain %>';
+      });
+    <% end %>
   }
 
   function loadScript() {
@@ -18,13 +31,5 @@
 
   window.onload = loadScript;
 </script>
-<div class="grid_8" id="map_canvas"></div>
-<div class="grid_4">
-  <ul id="report_list">
-      <% @country.cities.each do |city| %>
-        <li><h5><%= link_to city.name, reports_url(:subdomain => city.subdomain) %></h5>
-        </li>
-      <% end %>
-  </ul>
-</div>
+<div class="grid_12" id="country_map_canvas"></div>
 <div class="clear"></div>
