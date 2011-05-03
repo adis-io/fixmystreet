@@ -16,6 +16,7 @@ gem 'cancan', '1.6.4'
 gem 'twitter', '1.2.0'
 gem 'httpclient', '2.2.0.1'
 gem 'subdomain-fu', :git => 'git://github.com/intridea/subdomain-fu.git'
+gem 'typus', :git => 'git://github.com/fesplugas/typus.git'
 
 group :development do
   gem 'capistrano'
