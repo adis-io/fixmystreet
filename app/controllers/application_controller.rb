@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
 
   def set_locale
     session[:locale] = params[:locale] if params[:locale] and %(ru en).include? params[:locale]
-    I18n.locale = session[:locale] if session[:locale].nil?
+    I18n.locale = session[:locale] unless session[:locale].nil?
   end
 
   def fetch_city
