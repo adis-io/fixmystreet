@@ -2,7 +2,7 @@
 
 Fixmystreet::Application.config.session_store :cookie_store,
   :key => '_fixmystreet_session',
-  :domain => :all
+  :domain => '.fixmystreet.kg'
 
 # Use the database for sessions instead of the cookie-based default,
 # which shouldn't be used to store highly confidential information

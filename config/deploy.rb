@@ -30,8 +30,7 @@ namespace :deploy do
 
   desc "Update devise auth credentials (Twitter, Facebook)"
   task :update_configs do
-    run "cp #{shared_path}/config/social.yml #{current_release}/config/"
-    run "cp #{shared_path}/config/database.yml #{current_release}/config/"
+    run "cp #{shared_path}/config/* #{current_release}/config/"
   end
 
   after "deploy:finalize_update", "deploy:update_configs"
