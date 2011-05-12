@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :fetch_city
+  before_filter :set_locale
 
   def check_auth
     unless user_signed_in?
