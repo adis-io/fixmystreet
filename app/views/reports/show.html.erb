@@ -31,6 +31,9 @@
   <h6><%= link_to @report.user.name, @report.user.link %></h6>
   <h3><%=@report.title %></h3>
   <%= render "meta_box" %>
+  <%= embed_tag @report.video_url %>
+  <br />
+  <br />
   <%=@report.description %><br /><br />
   <ul class="images">
     <%= content_tag(:li, link_to(image_tag(@report.photo1.url(:medium)), @report.photo1.url)) if @report.photo1? %>

@@ -1,11 +1,10 @@
 require "bundler/capistrano"
 
 set :application, "fixmystreet"
-set :repository,  "/home/sv4/repo.git/"
-set :local_repository,  "sv4@fixmystreet.kg:repo.git"
+set :repository,  "git://github.com/kalys/fixmystreet.git"
 
 set :scm, :git
-set :branch, "kg"
+set :branch, "develop"
 
 server "fixmystreet.kg", :app, :web, :db, :primary => true
 
