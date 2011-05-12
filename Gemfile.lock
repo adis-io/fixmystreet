@@ -9,8 +9,8 @@ GIT
       will_paginate (~> 3.0.pre2)
 
 GIT
-  remote: git://github.com/intridea/subdomain-fu.git
-  revision: 763410bdc16931cbe193e8776dbe248276b1eda3
+  remote: git://github.com/kalys/subdomain-fu.git
+  revision: dab39fe58dbe5f820e110318e00f92df5e196f9d
   specs:
     subdomain-fu (1.0.0.beta2)
 
