@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   before_filter :fetch_city
   before_filter :set_locale
 
-  def check_auth
+  def check_if_logged
     unless user_signed_in?
       session[:redirect_to] = request.url
       redirect_to new_user_session_path and return

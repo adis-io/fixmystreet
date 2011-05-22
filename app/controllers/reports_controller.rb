@@ -1,8 +1,7 @@
 class ReportsController < ApplicationController
 
   before_filter :fetch_city
-  before_filter :set_locale
-  before_filter :check_auth, :only => [:new, :create, :edit, :update]
+  before_filter :check_if_logged, :only => [:new, :create, :edit, :update]
   before_filter :find_report, :only => [:show, :edit, :update,
     :destroy, :fixed]
   before_filter :check_perm, :only => [:edit, :update, :destroy,

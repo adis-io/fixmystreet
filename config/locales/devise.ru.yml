@@ -37,3 +37,6 @@ ru:
         subject: 'Инструкции по сбросу пароля'
       unlock_instructions:
         subject: 'Инструкции по разблокировке'
+    omniauth_callbacks:
+      success: 'Успешно зашли с аккаунта %{kind}'
+      failure: 'Произошла ошибка во время авторизации аккаунта %{kind} по причине "%{reason}".'
