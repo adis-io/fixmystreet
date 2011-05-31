@@ -1,0 +1,3 @@
+[submodule "public/pieselect"]
+	path = public/pieselect
+	url = git://github.com/pieoneers/pieselect
