@@ -1,8 +1,8 @@
 <script>
   function initialize() {
-    var myLatlng = new google.maps.LatLng(42.861118,74.607811);
+    var myLatlng = new google.maps.LatLng(<%= @city.lat %>,<%= @city.long %>);
     var myOptions = {
-        zoom: 11,
+        zoom: <%= @city.zoom %>,
         center: myLatlng,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     }
