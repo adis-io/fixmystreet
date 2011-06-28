@@ -8,3 +8,4 @@ tmp/**/*
 .DS_Store
 config/social.yml
 public/system
+bin/*
