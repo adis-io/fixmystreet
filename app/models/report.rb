@@ -25,6 +25,8 @@ class Report < ActiveRecord::Base
   belongs_to :user
   belongs_to :city
 
+  scope :new, where(:status => NEW)
+
   # paperclip
   medium_style = "300x150#"
   thumb_style = "50x50#"

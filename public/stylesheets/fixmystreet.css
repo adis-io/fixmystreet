@@ -109,3 +109,17 @@ textarea#report_description {
 #country_map_canvas {
     height: 500px;
 }
+
+.labels {
+  color: red;
+  background-color: white;
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+  width: 30px;
+  white-space: nowrap;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-radius: 7px;
+}
+

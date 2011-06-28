@@ -2,16 +2,8 @@
 <html>
 <head>
   <title>Fixmystreet</title>
-  <%= stylesheet_link_tag "reset" %>
-  <%= stylesheet_link_tag "text" %>
-  <%= stylesheet_link_tag "960" %>
-  <%= stylesheet_link_tag "jquery.jgrowl" %>
-  <%= stylesheet_link_tag "disqus" %>
-  <%= stylesheet_link_tag "fixmystreet" %>
-  <%= javascript_include_tag "jquery" %>
-  <%= javascript_include_tag "rails" %>
-  <%= javascript_include_tag "jquery.jgrowl" %>
-  <%= javascript_include_tag "http://maps.google.com/maps/api/js?sensor=true&language=ru" %>
+  <%= stylesheet_link_tag "reset", "text", "960", "jquery.jgrowl", "disqus", "fixmystreet" %>
+  <%= javascript_include_tag "jquery", "rails", "jquery.jgrowl", "http://maps.google.com/maps/api/js?sensor=true&language=en", "markerwithlabel_packed" %>
   <%= csrf_meta_tag %>
   <%= display_flash %>
   <link rel="alternate" type="application/rss+xml" title="Fixmystreet Kyrgyzstan" href="<%= feed_path %>.rss" />
