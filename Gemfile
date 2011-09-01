@@ -7,12 +7,11 @@ gem 'devise', ' ~> 1.4'
 gem "oa-oauth", '0.2.0', :require => "omniauth/oauth"
 gem 'mysql2', '0.2.7'
 gem 'paperclip', '2.3.8'
-gem 'kaminari', '0.10.4'
+gem 'kaminari', '0.12.4'
 gem 'cancan', '1.6.4'
 gem 'twitter', '1.2.0'
 gem 'httpclient', '2.2.0.1'
 gem 'subdomain-fu', :git => 'git://github.com/kalys/subdomain-fu.git'
-gem 'typus', '~> 3.0'
 
 group :development do
   gem 'capistrano'
