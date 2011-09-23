@@ -1,0 +1,1 @@
+FixMyStreet.Reports = function() {}

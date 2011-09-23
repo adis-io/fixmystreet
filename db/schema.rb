@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110503164811) do
+ActiveRecord::Schema.define(:version => 20110920165533) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "first_name",       :default => "",    :null => false
@@ -31,24 +31,23 @@ ActiveRecord::Schema.define(:version => 20110503164811) do
   create_table "cities", :force => true do |t|
     t.string   "name"
     t.string   "lat"
-    t.string   "long"
+    t.string   "lng"
     t.integer  "zoom"
     t.integer  "country_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "subdomain"
+    t.string   "slug"
   end
-
-  add_index "cities", ["subdomain"], :name => "index_cities_on_subdomain", :unique => true
 
   create_table "countries", :force => true do |t|
     t.string   "name"
     t.string   "lat"
-    t.string   "long"
+    t.string   "lng"
     t.integer  "zoom"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "default_city_id"
+    t.string   "country_code"
   end
 
   add_index "countries", ["default_city_id"], :name => "index_countries_on_default_city_id"
@@ -69,8 +68,8 @@ ActiveRecord::Schema.define(:version => 20110503164811) do
   create_table "reports", :force => true do |t|
     t.string   "title"
     t.text     "description"
-    t.string   "latitude"
-    t.string   "longtitude"
+    t.string   "lat"
+    t.string   "lng"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"

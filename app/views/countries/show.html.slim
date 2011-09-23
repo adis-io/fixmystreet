@@ -1,0 +1,8 @@
+- content_for :javascripts do
+  javascript:
+    $(document).ready(function() {
+      FixMyStreet.render_country_map(#{raw @country.to_json}, #{ raw @country.cities.to_json} );
+    });
+
+div class="grid_12" id="map_canvas"
+div class="clear"

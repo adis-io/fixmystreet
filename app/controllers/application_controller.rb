@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  before_filter :fetch_city
+  before_filter :fetch_country
   before_filter :set_locale
 
   def check_if_logged
@@ -28,20 +28,9 @@ class ApplicationController < ActionController::Base
     I18n.locale = session[:locale] if session[:locale]
   end
 
-  def fetch_city
-    if current_subdomain
-      @city = City.find_by_subdomain(current_subdomain)
-      redirect_to "/404.html" and return unless @city
-      session[:city] = @city.subdomain
-    elsif session[:city]
-      @city = City.find_by_subdomain(session[:city])
-    elsif
-      @city = City.find_by_subdomain(Country.first.default_city)
-      session[:city] = @city.subdomain
-    else
-      @city = Country.first.cities.first
-      session[:city] = @city.subdomain
-    end
-    redirect_to root_path and return unless @city
+  def fetch_country
+    country_code = Rails::Application.config.domains.invert[request.host]
+    @country = Country.find_by_country_code country_code
+    render :status => 404 and return if @country.nil?
   end
 end

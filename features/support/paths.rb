@@ -10,6 +10,7 @@ module NavigationHelpers
 
     when /the home\s?page/
       '/'
+
     when /the "(.*)" report page/
       report = Report.find_by_title $1
       report_path report

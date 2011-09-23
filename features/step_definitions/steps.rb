@@ -60,17 +60,11 @@ Given /^a user "([^"]*)" with role "([^"]*)"$/ do |email, role|
   u.roles << r
 end
 
-Given /^a country "([^"]*)"$/ do |country|
-  Country.create! :name => country, :lat => 1, :long => 1,
-    :zoom => 1
+When /^I wait for (\d+) second$/ do |seconds|
+  sleep(seconds.to_i)
 end
 
-Given /^cities "([^"]*)" in "([^"]*)"$/ do |cities, country|
-  country = Country.find_by_name(country)
-  cities.split(", ").each do |city|
-    City.create! :name => city, :country_id => country,
-      :lat => 1, :long => 1, :zoom => 1,
-      :subdomain => city.downcase
-  end
+When /^I follow "([^"]*)" marker$/ do |arg1|
+  pending # express the regexp above with the code you wish you had
 end
 

@@ -1,6 +1,5 @@
 class Report < ActiveRecord::Base
 
-
   # statuses
   NEW = 1
   DUPLICATE = 2
@@ -8,7 +7,7 @@ class Report < ActiveRecord::Base
   REJECTED = 4
 
   # validation rules
-  validates_presence_of :title, :description, :latitude, :longtitude,
+  validates_presence_of :title, :description, :lat, :lng,
     :user, :city
 
   validates_length_of :title,       :minimum => 5,  :maximum => 250
@@ -17,7 +16,7 @@ class Report < ActiveRecord::Base
   validates_uniqueness_of :title
 
   # accessibility
-  attr_accessible :title, :description, :latitude, :longtitude,
+  attr_accessible :title, :description, :lat, :lng,
     :user, :video_url, :city_id,
     :photo1, :photo2, :photo3, :photo4, :photo5
 
@@ -25,7 +24,7 @@ class Report < ActiveRecord::Base
   belongs_to :user
   belongs_to :city
 
-  scope :new, where(:status => NEW)
+  scope :fresh, where(:status => NEW)
 
   # paperclip
   medium_style = "300x150#"

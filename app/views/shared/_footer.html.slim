@@ -1,0 +1,30 @@
+footer
+  div class="container_12"
+    div class="grid_2"
+      ul 
+        li
+          a href="http://twitter.com/fixmystreet_kg" Twitter
+        li
+          a href="http://www.facebook.com/pages/Fixmystreet-Bishkek/215928685090784" Facebook
+        li
+          = link_to t(:subscribe_rss), "#{feed_path}.rss", :format => "rss"
+    div class="grid_2"
+      ul 
+        li
+          = link_to t(:about), about_path
+        li
+          = link_to t(:contact_us), contacts_path
+    div class="grid_4"
+      ul
+        li
+          =' t(:design_by)
+          a href="http://fixmystreet.ca" Fixmystreet.CA
+    div class="grid_4"
+      ul
+        li
+          = link_to t(:source_code), "http://github.com/kalys/fixmystreet"
+        li
+          = link_to t(:report_about_bug), "http://github.com/kalys/fixmystreet/issues"
+        li
+          | &copy; 
+          a href="http://dolboor.kg" IT Dolboor

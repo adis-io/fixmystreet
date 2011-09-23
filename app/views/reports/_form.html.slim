@@ -1,0 +1,33 @@
+- content_for :javascripts do
+  javascript:
+    $(document).ready(function() {
+      FixMyStreet.render_edit_report_map(#{raw @country.cities.to_json}, #{ raw @report.to_json} );
+    });
+
+div class="grid_8"
+  div id="map_canvas"
+
+div class="grid_4"
+  = form_for @report, :html => {:multipart => true} do |r|
+    = r.label :city_id
+    = r.select :city_id, @country.cities.collect {|c| [c.name, c.id, {:'data-params' => c.to_json }]}
+    = r.label :title
+    = r.text_field :title
+    div style="display:block"
+      = r.label :lat
+      = r.text_field  :lat
+      = r.label :lng
+      = r.text_field  :lng
+
+    = r.label :description
+    = r.text_area :description
+    = r.label :video_url
+    = r.text_field :video_url
+    = t :video_url_example
+
+    = t :upload_images
+    - [:photo1, :photo2, :photo3, :photo4, :photo5].each do |photo|
+      = r.file_field photo
+    = r.submit t(:save) 
+div class="clear"
+

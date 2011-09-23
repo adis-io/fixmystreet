@@ -11,10 +11,13 @@ require 'cucumber/formatter/unicode' # Remove this line if you don't want Cucumb
 require 'cucumber/rails'
 require 'cucumber/rails/world'
 require 'cucumber/web/tableish'
+require 'rspec/expectations'
+require 'database_cleaner'
 
 require 'capybara/rails'
 require 'capybara/cucumber'
 require 'capybara/session'
+require 'capybara-webkit'
 #require 'cucumber/rails/capybara_javascript_emulation' # Lets you click links with onclick javascript handlers without using @culerity or @javascript
 # Capybara defaults to XPath selectors rather than Webrat's default of CSS3. In
 # order to ease the transition to Capybara we set the default here. If you'd
@@ -32,7 +35,7 @@ Capybara.javascript_driver = :webkit
 # pages, more or less in the same way your application would behave in the
 # default production environment. It's not recommended to do this for all
 # of your scenarios, as this makes it hard to discover errors in your application.
-ActionController::Base.allow_rescue = false
+ActionController::Base.allow_rescue = true
 
 # If you set this to true, each scenario will run in a database transaction.
 # You can still turn off transactions on a per-scenario basis, simply tagging 
@@ -42,20 +45,15 @@ ActionController::Base.allow_rescue = false
 # If you set this to false, transactions will be off for all scenarios,
 # regardless of whether you use @no-txn or not.
 #
-# Beware that turning transactions off will leave data in your database 
-# after each scenario, which can lead to hard-to-debug failures in 
+# Beware that turning transactions off will leave data in your database
+# after each scenario, which can lead to hard-to-debug failures in
 # subsequent scenarios. If you do this, we recommend you create a Before
 # block that will explicitly put your database in a known state.
-Cucumber::Rails::World.use_transactional_fixtures = true
+# Cucumber::Rails::World.use_transactional_fixtures
 # How to clean your database when transactions are turned off. See
 # http://github.com/bmabey/database_cleaner for more info.
-if defined?(ActiveRecord::Base)
-  begin
-    require 'database_cleaner'
-    DatabaseCleaner.strategy = :truncation
-  rescue LoadError => ignore_if_database_cleaner_not_present
-  end
-end
+DatabaseCleaner.strategy = :truncation
+
 OmniAuth.config.test_mode = true
 OmniAuth.config.mock_auth[:facebook] = {
   'extra' => {
@@ -84,23 +82,11 @@ OmniAuth.config.mock_auth[:twitter] = {
   }
 }
 
-if Capybara.current_driver == :webkit
-  headless = Headless.new
-  headless.start
-
-  at_exit do
-    headless.destroy
-  end
+Before do
+  Capybara.server_port = 9887
+  Capybara.app_host = "http://dev.fixmystreet.kg:#{Capybara.server_port}"
 end
 
-Before do
-  load_schema = lambda {
-    # use db agnostic schema by default
-    load "#{Rails.root.to_s}/db/schema.rb"
-
-    # if you use seeds uncomment next line
-    load "#{Rails.root.to_s}/db/seeds.rb"
-    # ActiveRecord::Migrator.up('db/migrate') # use migrations
-  }
-  silence_stream(STDOUT, &load_schema)
+After do
+  DatabaseCleaner.start
 end

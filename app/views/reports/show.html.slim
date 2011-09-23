@@ -1,0 +1,31 @@
+- content_for :javascripts do
+  javascript:
+    $(document).ready(function() {
+      FixMyStreet.render_report_map( #{ raw @report.to_json} );
+    });
+
+div class="grid_8"
+  div id="map_canvas"
+  div id="disqus_thread"
+
+div class="grid_4"
+  h6= link_to @report.user.name, @report.user.link
+  h3=@report.title
+  = render "meta_box"
+  = embed_tag @report.video_url
+  =@report.description
+  ul class="images"
+    - [:photo1, :photo2, :photo3, :photo4, :photo5].each do |photo|     
+      = content_tag(:li, link_to(image_tag(@report.try(photo).url(:medium)), @report.try(photo).url)) if @report.try("#{photo}?") 
+
+div class="clear"
+javascript:
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'fixmystreet'; // required: replace example with your forum shortname
+  var disqus_developer = 1;
+
+  // The following are highly recommended additional parameters. Remove the slashes in front to use.
+  //var disqus_identifier = '<%= @report.id %>';
+  //var disqus_url = 'http://fixmystreet.kg<%= report_path @report %>';
+  window.disqus_no_style = true;
+  $.getScript("http://disqus.com/forums/fixmystreet/embed.js")

@@ -9,9 +9,7 @@ gem 'mysql2', '0.2.7'
 gem 'paperclip', '2.3.8'
 gem 'kaminari', '0.12.4'
 gem 'cancan', '1.6.4'
-gem 'twitter', '1.2.0'
-gem 'httpclient', '2.2.0.1'
-gem 'subdomain-fu', :git => 'git://github.com/kalys/subdomain-fu.git'
+gem 'slim', '1.0.2'
 
 group :development do
   gem 'capistrano'
@@ -27,4 +25,5 @@ group :development, :test do
   gem "rspec-rails"
   gem 'remarkable_activerecord', '~> 4.0.0.alpha4'
   gem 'launchy'
+  gem 'ruby-debug19'
 end

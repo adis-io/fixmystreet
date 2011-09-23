@@ -8,11 +8,19 @@ set :branch, "develop"
 
 server "fixmystreet.kg", :app, :web, :db, :primary => true
 
-set :deploy_to, "/home/sv4/fixmystreet.kg"
+set :deploy_to, "/home/rsskg/fixmystreet.kg"
 
-set :user, "sv4"
+set :user, "rsskg"
 set :group, "users"
 set :use_sudo, false
+set :default_environment, {
+  'PATH' => "/usr/local/rvm/gems/ruby-1.9.2-p290/bin:/usr/local/rvm/bin:/usr/local/rvm/gems/ruby-1.9.2-p290/bin:$PATH",
+  'RUBY_VERSION' => 'ruby 1.9.2-p290',
+  'GEM_HOME'     => '/usr/local/rvm/gems/ruby-1.9.2-p290',
+  'GEM_PATH'     => '/usr/local/rvm/gems/ruby-1.9.2-p290',
+  'BUNDLE_PATH'  => '/usr/local/rvm/gems/ruby-1.9.2-p290'  # If you are using bundler.
+}
+
 
 namespace :deploy do
   task :start do

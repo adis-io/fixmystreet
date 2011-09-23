@@ -1,0 +1,20 @@
+defaults: &defaults
+  kg: localhost
+  kz: kz.localhost
+  uz: uz.localhost
+  tj: tj.localhost
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production: &production
+  kg: "fixmystreet.kg"
+  kz: "fixmystreet.kz"
+  uz: "fixmystreet.uz"
+  tj: "fixmystreet.tj"
+
+staging:
+  <<: *production

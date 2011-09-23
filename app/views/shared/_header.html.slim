@@ -1,0 +1,20 @@
+header
+  div class="container_12"
+    div class="grid_6"
+      div id="main_title"
+        a href="/"
+          img src="/images/logo.png"
+    div class="grid_6 header_right"
+      div id="user_box"
+        - if user_signed_in?
+          = t(:hello) + current_user.name
+          | .
+          =link_to t(:logout), destroy_user_session_url()
+        - else
+          = link_to image_tag("/images/fb.png", :alt => 'Login with Facebook'), user_omniauth_authorize_path(:facebook)
+          = link_to image_tag("/images/twitter.png", :alt => 'Login with Twitter'), user_omniauth_authorize_path(:twitter)
+      ul id="header_menu"
+        li= link_to t(:submit_new_report), new_report_url
+        li= link_to t(:about), about_path
+        li=link_to t(:contact_us), contacts_path
+      div class="clear"
