@@ -1,7 +1,7 @@
 <% if can? :manage, @report %>
   <div>
-  <%= link_to t(:edit), edit_report_path(@report) %>
-  <%= link_to t(:delete), report_path(@report), :method => :delete, :confirm => t(:are_you_sure) %>
-  <%= link_to t(:fixed), fixed_report_path(@report) %>
+  <%= link_to t(:edit), edit_report_path(@city, @report) %>
+  <%= link_to t(:delete), report_path(@city, @report), :method => :delete, :confirm => t(:are_you_sure) %>
+  <%= link_to t(:fixed), fixed_report_path(@city, @report) %>
   </div>
 <% end %>

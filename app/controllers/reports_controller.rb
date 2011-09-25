@@ -1,5 +1,5 @@
 class ReportsController < ApplicationController
-  before_filter :fetch_city, :only => [:show, :index]
+  before_filter :fetch_city, :only => [:show, :index, :edit, :update]
   before_filter :find_report, :only => [:show, :edit, :update, :destroy, :fixed]
 
   def index

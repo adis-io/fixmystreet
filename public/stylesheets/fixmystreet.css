@@ -1,113 +1,57 @@
+html, body {
+  background-color: #eee;
+}
+
 body {
+  padding-top: 40px;
 }
 
-ul.images {
-  list-style: none;
-  padding: 0px;
-}
-.images li {
-  margin: 0px;
+.page-header {
+  background-color: whiteSmoke;
+  padding: 20px 20px 10px;
+  margin: -20px -20px 20px;
 }
 
-article {
-  background: #222;
-  color: #B4B4B4;
-  padding-top: 30px;
-  padding-bottom: 30px;
+.topbar div > ul a.btn {
+  padding: 5px;
+  margin: 3px 0;
 }
 
-article a {
-  color: #FC3535;
+.content .span4 {
+margin-left: 0;
+padding-left: 19px;
+border-left: 1px solid #EEE;
 }
 
-article a:hover {
-  text-decoration: underline;
+.content .span6 {
+margin-left: 0;
+padding-left: 19px;
+border-left: 1px solid #EEE;
+}
+
+.content .span10 #map_canvas, #disqus_thread {
+  margin-right: 20px;
+}
+
+.content {
+  background-color: white;
+  padding: 20px;
+  margin: 0 -20px;
+  -webkit-border-radius: 0 0 6px 6px;
+      -moz-border-radius: 0 0 6px 6px;
+          border-radius: 0 0 6px 6px;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+      -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+          box-shadow: 0 1px 2px rgba(0,0,0,.15);
 }
 
 #map_canvas {
     height: 500px;
 }
 
-header a, footer a {
-  color: #222;
-  text-decoration: none;
-}
-
-header a:hover, footer a:hover {
-  color: #7E090C;
-  text-decoration: underline;
-}
-
-header, footer {
-  height: 120px;
-  background: white;
-}
-
 footer {
   margin-top: 20px;
-  font-size: 120%;
-}
-
-@font-face {
-  font-family: 'Permanent Marker';
-  font-style: normal;
-  font-weight: normal;
-  src: local('Permanent Marker'), local('PermanentMarker'), url('/fonts/PermanentMarker.ttf') format('truetype');
-}
-
-#main_title {
-  font-family: 'Permanent Marker', arial, serif;
-  color: #222;
-}
-
-#main_title a:hover {
-  text-decoration: none;
-  color: #222;
-}
-
-#city {
-  color: #FC3535;
-  font-size: 40%;
-}
-
-#user_box {
-  text-align: right;
-}
-
-.header_right {
-  margin-top: 5px;
-}
-
-#header_menu {
-  margin-top: 32px;
-  float: right;
-}
-
-#header_menu li {
-  list-style: none;
-  float:left;
-  font-size: 120%;
-}
-
-#report_list {
-  list-style: decimal;
-}
-
-#report_list li {
-  margin-bottom: 10px;
-}
-
-#report_list li h5 {
   margin-bottom: 5px;
-}
-
-textarea#report_description {
-  width: 300px;
-  height: 200px;
-}
-
-#country_map_canvas {
-    height: 500px;
 }
 
 .labels {
@@ -121,4 +65,3 @@ textarea#report_description {
   padding-right: 5px;
   border-radius: 7px;
 }
-

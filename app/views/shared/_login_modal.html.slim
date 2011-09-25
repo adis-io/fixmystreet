@@ -1,0 +1,11 @@
+#login_modal.modal.hide.fade
+  .modal-header
+    a.close 
+      | &times;
+    h3= t(:login)
+  .modal-body
+    ul
+      li
+        = link_to t(:login_with_facebook), user_omniauth_authorize_path(:facebook)
+      li
+        = link_to t(:login_with_twitter), user_omniauth_authorize_path(:twitter)

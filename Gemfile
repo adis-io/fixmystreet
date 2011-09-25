@@ -6,8 +6,8 @@ gem 'sqlite3-ruby','1.3.3', :require => 'sqlite3'
 gem 'devise', ' ~> 1.4'
 gem "oa-oauth", '0.2.0', :require => "omniauth/oauth"
 gem 'mysql2', '0.2.7'
-gem 'paperclip', '2.3.8'
-gem 'kaminari', '0.12.4'
+gem 'paperclip', '~> 2.4'
+gem 'kaminari', '~> 0.12'
 gem 'cancan', '1.6.4'
 gem 'slim', '1.0.2'
 

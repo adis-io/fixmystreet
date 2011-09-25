@@ -4,30 +4,41 @@
       FixMyStreet.render_edit_report_map(#{raw @country.cities.to_json}, #{ raw @report.to_json} );
     });
 
-div class="grid_8"
-  div id="map_canvas"
+div.row
+  div.span8
+    = form_for @report, :html => {:multipart => true} do |r|
+      .clearfix
+        = r.label :city_id
+        .input
+          = r.select :city_id, @country.cities.collect {|c| [c.name, c.id, {:'data-params' => c.to_json }]}
+      .clearfix
+        = r.label :title
+        .input
+          = r.text_field :title
+      div style="display:none"
+        = r.label :lat
+        = r.text_field  :lat
+        = r.label :lng
+        = r.text_field  :lng
 
-div class="grid_4"
-  = form_for @report, :html => {:multipart => true} do |r|
-    = r.label :city_id
-    = r.select :city_id, @country.cities.collect {|c| [c.name, c.id, {:'data-params' => c.to_json }]}
-    = r.label :title
-    = r.text_field :title
-    div style="display:block"
-      = r.label :lat
-      = r.text_field  :lat
-      = r.label :lng
-      = r.text_field  :lng
+      .clearfix
+        = r.label :description
+        .input
+          = r.text_area :description, :rows => 3, :class => "large"
+      .clearfix
+        = r.label :video_url
+        .input
+          = r.text_field :video_url
+          span.help-block= t :video_url_example
 
-    = r.label :description
-    = r.text_area :description
-    = r.label :video_url
-    = r.text_field :video_url
-    = t :video_url_example
+      .clearfix
+        label= t(:upload_images)
+        .input
+          - [:photo1, :photo2, :photo3, :photo4, :photo5].each do |photo|
+            = r.file_field photo
+      .actions
+        = r.submit t(:save), :class => 'btn large primary'
 
-    = t :upload_images
-    - [:photo1, :photo2, :photo3, :photo4, :photo5].each do |photo|
-      = r.file_field photo
-    = r.submit t(:save) 
-div class="clear"
+  div.span8
+    div#map_canvas
 

@@ -4,13 +4,19 @@
       FixMyStreet.render_city_map(#{raw @city.to_json}, #{ raw @reports.to_json} );
     });
 
-div class="grid_8" id="map_canvas"
-div class="grid_4"
-  ul id="report_list"
-    - @reports.each do |report|
-      li
-        h5= link_to report.title, report_path(@city, report)
-        - [:photo1, :photo2, :photo3, :photo4, :photo5].each do |photo|     
-          = image_tag report.try(photo).url(:thumb) if report.try("#{photo}?")
-  = paginate @reports
-div class="clear"
+div.page-header
+  h1= @city.name
+
+div.row
+  div.span10
+    div#map_canvas
+  div.span6
+    h4= t(:reports)
+    table.zebra-striped
+      - @reports.each do |report|
+        tr
+          td
+            h5= link_to report.title, report_path(@city, report)
+            - [:photo1, :photo2, :photo3, :photo4, :photo5].each do |photo|     
+              = image_tag report.try(photo).url(:thumb) if report.try("#{photo}?")
+    = paginate @reports

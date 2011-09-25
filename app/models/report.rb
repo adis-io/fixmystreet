@@ -27,8 +27,8 @@ class Report < ActiveRecord::Base
   scope :fresh, where(:status => NEW)
 
   # paperclip
-  medium_style = "300x150#"
-  thumb_style = "50x50#"
+  medium_style = "210x150#"
+  thumb_style = "90x90#"
 
   has_attached_file :photo1,
     :styles => {:medium => medium_style, :thumb => thumb_style}
@@ -44,9 +44,6 @@ class Report < ActiveRecord::Base
 
   has_attached_file :photo5,
     :styles => {:medium => medium_style, :thumb => thumb_style}
-
-  # kaminari pagination
-  paginates_per 10
 
   def fixed?
     self.status == FIXED
