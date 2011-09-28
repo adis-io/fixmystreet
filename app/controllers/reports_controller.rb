@@ -45,9 +45,10 @@ class ReportsController < ApplicationController
   end
 
   def destroy
+    city = @report.city
     @report.delete
     flash[:notice] = t(:succesfully_deleted)
-    redirect_to reports_path
+    redirect_to list_reports_path city
   end
 
   def fixed
