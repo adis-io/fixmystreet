@@ -17,14 +17,13 @@ class ReportsController < ApplicationController
     @report = Report.new
     @report.user = current_user
     @report.status = Report::NEW
-    @report.city = @city
     @report.update_attributes params[:report]
     unless @report.valid?
       flash[:error] = @report.errors.full_messages.to_sentence
       render :action => "new" and return
     end
 
-    redirect_to report_path @report
+    redirect_to report_path @report.city, @report
   end
 
   def about
@@ -42,7 +41,7 @@ class ReportsController < ApplicationController
       flash[:error] = @report.errors.full_messages.to_sentence
       render :action => "edit" and return
     end
-    redirect_to report_path @report
+    redirect_to report_path @report.city, @report
   end
 
   def destroy

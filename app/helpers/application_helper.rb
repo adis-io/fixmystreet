@@ -39,4 +39,12 @@ module ApplicationHelper
     render :partial => 'shared/breadcrumbs',
       :locals => {:items => items}
   end
+
+  def new_edit_form_path
+    if @report.new_record?
+      reports_path
+    else
+      report_path(@report.city, @report)
+    end
+  end
 end

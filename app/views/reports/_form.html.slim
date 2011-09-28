@@ -9,7 +9,7 @@ div.page-header
 
 div.row
   div.span8
-    = form_for @report, :html => {:multipart => true} do |r|
+    = form_for(@report, :url => new_edit_form_path, :html => {:multipart => true}) do |r|
       .clearfix
         = r.label :city_id
         .input
