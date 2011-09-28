@@ -1,0 +1,10 @@
+ul.breadcrumb
+  / show breadcrumb link items except last
+  - items[0...-1].each do |item|
+    li
+      = link_to item.first, item.last
+      |
+      span.divider
+        | >
+  / last is not link
+  li.active= items.last

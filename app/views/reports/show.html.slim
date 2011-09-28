@@ -4,6 +4,9 @@
       FixMyStreet.render_report_map( #{ raw @report.to_json} );
     });
 
+div.page-header
+  = render_report_breadcrumb
+
 div.row
   div.span10
     div#map_canvas

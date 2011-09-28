@@ -10,7 +10,10 @@ Fixmystreet::Application.routes.draw do
   resources :reports, :only => [:new, :create]
 
   scope ":city" do
-    resources :reports, :only => [:show, :index, :edit, :update, :destroy] do
+    resources :reports, :only => [:show, :edit, :update, :destroy] do
+      collection do
+        get '', :action => :index, :as => :list
+      end
       member do
         get 'fixed'
       end
