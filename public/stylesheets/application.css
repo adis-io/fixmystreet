@@ -65,3 +65,12 @@ footer {
   padding-right: 5px;
   border-radius: 7px;
 }
+
+.alert-message {
+  position: fixed;
+  top: 50px;
+  right: 10px;
+  z-index: 11111;
+
+  width: 400px;
+}

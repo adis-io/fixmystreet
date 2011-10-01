@@ -1,0 +1,7 @@
+.container
+  - flash.each do |key, value|
+    - key = 'success' if key == :notice
+    .alert-message.fade.in class=key data-alert='alert'
+      a.close href='#'
+        | ×
+      p= value
