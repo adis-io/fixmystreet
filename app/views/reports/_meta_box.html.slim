@@ -1,5 +1,18 @@
-- if can? :manage, @report
-  div
-    =' link_to t(:edit), edit_report_path(@city, @report)
-    =' link_to t(:delete), report_path(@city, @report), :method => :delete, :confirm => t(:are_you_sure)
-    =' link_to t(:fixed), fixed_report_path(@city, @report)
+.meta
+  =' link_to(t(:mark_as_fixed), request_fixed_report_path(@city, @report), :class => "btn small primary") if @report.state? :active
+  - if can? :update, @report
+    =' link_to t(:edit), edit_report_path(@city, @report), :class => "btn small info"
+    =' link_to t(:inactivate), inactivate_report_path(@city, @report), :class => "btn small default" unless @report.state? :inactive
+  - if can? :manage, @report
+    - if @report.state? :waiting_moderation
+      =' link_to t(:accept), accept_report_path(@city, @report), :class => 'btn small success'
+      =' link_to t(:decline), inactivate_report_path(@city, @report), :class => 'btn small danger'
+    - if @report.state? :waiting_confirmation
+      =' link_to t(:confirm_fixed), confirm_fixed_report_path(@city, @report), :class => 'btn small success'
+      =' link_to t(:decline_fixed), decline_fixed_report_path(@city, @report), :class => 'btn small danger'
+    - if @report.state? :fixed
+      =' link_to t(:decline_fixed), decline_fixed_report_path(@city, @report), :class => 'btn small danger'
+    - if @report.state? :inactive
+      =' link_to t(:activate), activate_report_path(@city, @report), :class => 'btn small success'
+
+

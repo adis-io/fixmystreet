@@ -10,6 +10,7 @@ gem 'paperclip', '~> 2.4'
 gem 'kaminari', '~> 0.12'
 gem 'cancan', '1.6.4'
 gem 'slim', '1.0.2'
+gem 'stateflow', '~> 0.4'
 
 group :development do
   gem 'capistrano'

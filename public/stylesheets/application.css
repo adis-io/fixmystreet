@@ -12,6 +12,14 @@ body {
   margin: -20px -20px 20px;
 }
 
+body.reports .page-header {
+  padding-bottom: 38px;
+}
+
+.page-header .tabs {
+  border: 0;
+}
+
 .topbar div > ul a.btn {
   padding: 5px;
   margin: 3px 0;

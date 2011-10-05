@@ -1,10 +1,5 @@
 class Report < ActiveRecord::Base
-
-  # statuses
-  NEW = 1
-  DUPLICATE = 2
-  FIXED = 3
-  REJECTED = 4
+  include Stateflow
 
   # validation rules
   validates_presence_of :title, :description, :lat, :lng,
@@ -24,7 +19,7 @@ class Report < ActiveRecord::Base
   belongs_to :user
   belongs_to :city
 
-  scope :fresh, where(:status => NEW)
+  scope :located_in, lambda { |city| where(:city_id => city) }
 
   # paperclip
   medium_style = "210x150#"
@@ -45,10 +40,42 @@ class Report < ActiveRecord::Base
   has_attached_file :photo5,
     :styles => {:medium => medium_style, :thumb => thumb_style}
 
-  def fixed?
-    self.status == FIXED
+  def state? state
+    self.state == state.to_s
   end
 
-  scope :located_in, lambda { |city| where(:city_id => city) }
-end
+  stateflow do
+    initial :waiting_moderation
 
+    state :inactive, :active, :fixed, :waiting_moderation,
+      :waiting_confirmation
+
+    event :accept do
+      transitions :from => :waiting_moderation, :to => :active
+    end
+
+    event :decline do
+      transitions :from => :waiting_moderation, :to => :inactive
+    end
+
+    event :activate do
+      transitions :from => :inactive, :to => :active
+    end
+
+    event :inactivate do
+      transitions :from => [:active, :waiting_confirmation, :fixed], :to => :inactive
+    end
+
+    event :request_fixed do
+      transitions :from => :active, :to => :waiting_confirmation
+    end
+
+    event :confirm_fixed do
+      transitions :from => :waiting_confirmation, :to => :fixed
+    end
+
+    event :decline_fixed do
+      transitions :from => [:fixed, :waiting_confirmation], :to => :active
+    end
+  end
+end

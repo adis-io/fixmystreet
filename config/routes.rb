@@ -13,9 +13,20 @@ Fixmystreet::Application.routes.draw do
     resources :reports, :only => [:show, :edit, :update, :destroy] do
       collection do
         get '', :action => :index, :as => :list
-      end
-      member do
         get 'fixed'
+        get 'waiting_moderation'
+        get 'waiting_confirmation'
+        get 'inactive'
+      end
+
+      member do
+        get 'inactivate'
+        get 'accept'
+        get 'decline'
+        get 'activate'
+        get 'request_fixed'
+        get 'confirm_fixed'
+        get 'decline_fixed'
       end
     end
   end

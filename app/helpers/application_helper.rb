@@ -7,8 +7,8 @@ module ApplicationHelper
   def render_report_breadcrumb
     render :partial => 'shared/breadcrumbs',
       :locals => {:items => [
-        [@country.name, root_path],
-        [@city.name, list_reports_path(@city)],
+        [ @country.name, root_path ],
+        [ @city.name, list_reports_path(@city) ],
         @report.title]}
   end
 

@@ -1,9 +1,40 @@
 class ReportsController < ApplicationController
-  before_filter :fetch_city, :only => [:show, :index, :edit, :update]
-  before_filter :find_report, :only => [:show, :edit, :update, :destroy, :fixed]
+  load_and_authorize_resource
+  before_filter :fetch_city, :except => [:new, :create]
+  before_filter :fetch_reports,
+    :only => [:index, :fixed_index, :waiting_moderation_index,
+    :waiting_confirmation_reports]
 
   def index
-    @reports = Report.located_in(@city).order("id desc").page params[:page]
+    @reports_type = :active
+    @reports = @reports.where(:state => 'active').page params[:page]
+  end
+
+  def fixed
+    @reports_type = :fixed
+    @reports = @reports.where(:state => 'fixed').page params[:page]
+    render 'index'
+  end
+
+  def waiting_moderation
+    @reports_type = :waiting_moderation
+    @reports = @reports.where(:user_id => current_user) unless can? :manage, Report
+    @reports = @reports.where(:state => 'waiting_moderation').page params[:page]
+    render 'index'
+  end
+
+  def waiting_confirmation
+    @reports_type = :waiting_confirmation
+    @reports = @reports.where(:user_id => current_user) unless can? :manage, Report
+    @reports = @reports.where(:state => 'waiting_confirmation').page params[:page]
+    render 'index'
+  end
+
+  def inactive
+    @reports_type = :inactive
+    @reports = @reports.where(:user_id => current_user) unless can? :manage, Report
+    @reports = @reports.where(:state => 'inactive').page params[:page]
+    render 'index'
   end
 
   def show
@@ -14,25 +45,13 @@ class ReportsController < ApplicationController
   end
 
   def create
-    @report = Report.new
-    @report.user = current_user
-    @report.status = Report::NEW
-    @report.update_attributes params[:report]
-    unless @report.valid?
+    @report = current_user.reports.build(params[:report])
+    unless @report.save
       flash[:error] = @report.errors.full_messages.to_sentence
       render :action => "new" and return
     end
 
     redirect_to report_path @report.city, @report
-  end
-
-  def about
-  end
-
-  def contacts
-  end
-
-  def edit
   end
 
   def update
@@ -51,11 +70,35 @@ class ReportsController < ApplicationController
     redirect_to list_reports_path city
   end
 
-  def fixed
-    @report.status = Report::FIXED
-    @report.save
-    flash[:notice] = t(:status_updated)
-    redirect_to report_path @report and return
+  def accept
+    @report.accept!
+    redirect_to report_path @city, @report
+  end
+
+  def request_fixed
+    @report.request_fixed!
+    @report.confirm_fixed! if can? :manage, Report
+    redirect_to report_path @city, @report
+  end
+
+  def confirm_fixed
+    @report.confirm_fixed!
+    redirect_to report_path @city, @report
+  end
+
+  def decline_fixed
+    @report.decline_fixed!
+    redirect_to report_path @city, @report
+  end
+
+  def activate
+    @report.activate!
+    redirect_to report_path @city, @report
+  end
+
+  def inactivate
+    @report.inactivate!
+    redirect_to report_path @city, @report
   end
 
   def feed
@@ -67,8 +110,8 @@ class ReportsController < ApplicationController
   end
 
   private
-  def find_report
-    @report = Report.find params[:id]
+  def fetch_reports
+    @reports = Report.located_in(@city).order("id desc").scoped
   end
 
   def fetch_city

@@ -13,8 +13,8 @@ div.row
     div#disqus_thread
   div.span6
     h6= link_to @report.user.name, @report.user.link
-    h3=@report.title
     = render "meta_box"
+    h3=@report.title
     = embed_tag @report.video_url
     =@report.description
     ul.unstyled

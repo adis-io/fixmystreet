@@ -1,3 +1,4 @@
+- content_for :body_class, 'reports'
 - content_for :javascripts do
   javascript:
     $(document).ready(function() {
@@ -6,12 +7,18 @@
 
 div.page-header
   = render_reports_breadcrumb
+  ul.tabs
+    li class=(:active == @reports_type ? 'active':'') = link_to t(:active_reports), list_reports_path(@city)
+    li class=(:fixed == @reports_type ? 'active':'') = link_to t(:fixed_reports), fixed_reports_path(@city)
+    li class=(:waiting_moderation == @reports_type ? 'active':'') = link_to t(:waiting_moderation_reports), waiting_moderation_reports_path(@city)
+    li class=(:waiting_confirmation == @reports_type ? 'active':'') = link_to t(:waiting_confirmation_reports), waiting_confirmation_reports_path(@city) if can? :manage, Report
+    li class=(:inactive == @reports_type ? 'active':'') = link_to t(:inactive_reports), inactive_reports_path(@city)
 
 div.row
   div.span10
     div#map_canvas
   div.span6
-    h4= t(:reports)
+    h4= t(@reports_type)
     table.zebra-striped
       - @reports.each do |report|
         tr

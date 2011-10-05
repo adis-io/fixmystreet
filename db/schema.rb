@@ -10,23 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110920165533) do
-
-  create_table "admin_users", :force => true do |t|
-    t.string   "first_name",       :default => "",    :null => false
-    t.string   "last_name",        :default => "",    :null => false
-    t.string   "role",                                :null => false
-    t.string   "email",                               :null => false
-    t.boolean  "status",           :default => false
-    t.string   "token",                               :null => false
-    t.string   "salt",                                :null => false
-    t.string   "crypted_password",                    :null => false
-    t.string   "preferences"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
+ActiveRecord::Schema.define(:version => 20111002083004) do
 
   create_table "cities", :force => true do |t|
     t.string   "name"
@@ -39,6 +23,9 @@ ActiveRecord::Schema.define(:version => 20110920165533) do
     t.string   "slug"
   end
 
+  add_index "cities", ["country_id"], :name => "index_cities_on_country_id"
+  add_index "cities", ["slug"], :name => "index_cities_on_slug"
+
   create_table "countries", :force => true do |t|
     t.string   "name"
     t.string   "lat"
@@ -50,20 +37,8 @@ ActiveRecord::Schema.define(:version => 20110920165533) do
     t.string   "country_code"
   end
 
+  add_index "countries", ["country_code"], :name => "index_countries_on_country_code"
   add_index "countries", ["default_city_id"], :name => "index_countries_on_default_city_id"
-
-  create_table "rails_admin_histories", :force => true do |t|
-    t.string   "message"
-    t.string   "username"
-    t.integer  "item"
-    t.string   "table"
-    t.integer  "month",      :limit => 2
-    t.integer  "year",       :limit => 5
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_histories_on_item_and_table_and_month_and_year"
 
   create_table "reports", :force => true do |t|
     t.string   "title"
@@ -93,21 +68,14 @@ ActiveRecord::Schema.define(:version => 20110920165533) do
     t.string   "photo5_content_type"
     t.integer  "photo5_file_size"
     t.datetime "photo5_updated_at"
-    t.integer  "status"
     t.string   "video_url"
     t.integer  "city_id"
+    t.string   "state"
   end
 
-  create_table "roles", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "roles_users", :id => false, :force => true do |t|
-    t.integer "role_id"
-    t.integer "user_id"
-  end
+  add_index "reports", ["city_id"], :name => "index_reports_on_city_id"
+  add_index "reports", ["state"], :name => "index_reports_on_state"
+  add_index "reports", ["user_id"], :name => "index_reports_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                               :default => "", :null => false
@@ -128,9 +96,11 @@ ActiveRecord::Schema.define(:version => 20110920165533) do
     t.string   "gender"
     t.string   "facebook"
     t.string   "twitter"
+    t.string   "role"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["facebook_id"], :name => "index_users_on_facebook_id"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
-
+  add_index "users", ["twitter_id"], :name => "index_users_on_twitter_id"
 end

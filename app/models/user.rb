@@ -5,14 +5,12 @@ class User < ActiveRecord::Base
     :database_authenticatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :role
 
   has_many :reports
 
-  has_and_belongs_to_many :roles
-
   def role?(role)
-    return !!self.roles.find_by_name(role.to_s.camelize)
+    self.role == role.to_s
   end
 
   def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
