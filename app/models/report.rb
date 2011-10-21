@@ -26,19 +26,29 @@ class Report < ActiveRecord::Base
   thumb_style = "90x90#"
 
   has_attached_file :photo1,
-    :styles => {:medium => medium_style, :thumb => thumb_style}
+    :styles => {:medium => medium_style, :thumb => thumb_style},
+    :convert_options => { :all => '-auto-orient' },
+    :url => "/system/:attachment/:style_:id.:extension"
 
   has_attached_file :photo2,
-    :styles => {:medium => medium_style, :thumb => thumb_style}
+    :styles => {:medium => medium_style, :thumb => thumb_style},
+    :convert_options => { :all => '-auto-orient' },
+    :url => "/system/:attachment/:style_:id.:extension"
 
   has_attached_file :photo3,
-    :styles => {:medium => medium_style, :thumb => thumb_style}
+    :styles => {:medium => medium_style, :thumb => thumb_style},
+    :convert_options => { :all => '-auto-orient' },
+    :url => "/system/:attachment/:style_:id.:extension"
 
   has_attached_file :photo4,
-    :styles => {:medium => medium_style, :thumb => thumb_style}
+    :styles => {:medium => medium_style, :thumb => thumb_style},
+    :convert_options => { :all => '-auto-orient' },
+    :url => "/system/:attachment/:style_:id.:extension"
 
   has_attached_file :photo5,
-    :styles => {:medium => medium_style, :thumb => thumb_style}
+    :styles => {:medium => medium_style, :thumb => thumb_style},
+    :convert_options => { :all => '-auto-orient' },
+    :url => "/system/:attachment/:style_:id.:extension"
 
   def state? state
     self.state == state.to_s

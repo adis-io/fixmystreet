@@ -11,6 +11,7 @@ Devise.setup do |config|
   config.use_salt_as_remember_token = true
 
   config.timeout_in = 365.days
+  config.token_authentication_key = :fixmystreet_api_key
 
   SOCIAL_NETWORK_CONFIG = YAML.load_file("#{Rails.root.to_s}/config/social.yml")
   config.omniauth :twitter, SOCIAL_NETWORK_CONFIG["twitter"]["consumer_key"], SOCIAL_NETWORK_CONFIG["twitter"]["consumer_secret"]
