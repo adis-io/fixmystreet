@@ -11,10 +11,11 @@ gem 'kaminari', '~> 0.12'
 gem 'cancan', '1.6.4'
 gem 'slim', '1.0.2'
 gem 'stateflow', '~> 0.4'
+gem 'pg', '0.12.0'
 
 group :development do
   gem 'capistrano'
-  gem 'thin'
+  gem 'taps'
 end
 
 group :development, :test do
