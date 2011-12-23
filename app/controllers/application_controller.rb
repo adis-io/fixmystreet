@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
 
   def fetch_country
     country_code = Fixmystreet::Application.config.domains.invert[request.host]
-    @country = Country.find_by_country_code country_code
+    @country = Country.find_by_country_code(country_code) || Country.first
     render :status => 404 and return if @country.nil?
   end
 end
