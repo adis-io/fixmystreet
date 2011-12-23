@@ -22,33 +22,17 @@ class Report < ActiveRecord::Base
   scope :located_in, lambda { |city| where(:city_id => city) }
 
   # paperclip
-  medium_style = "210x150#"
-  thumb_style = "90x90#"
-
-  has_attached_file :photo1,
-    :styles => {:medium => medium_style, :thumb => thumb_style},
+  photo_style = {
+    :styles => {:medium => "210x150#", :thumb => "90x90#"},
     :convert_options => { :all => '-auto-orient' },
-    :url => "/system/:attachment/:style_:id.:extension"
+    :storage => :s3,
+    :s3_credentials => S3_CREDENTIALS,
+    :path => "/:style/:id/:filename"
+  }
 
-  has_attached_file :photo2,
-    :styles => {:medium => medium_style, :thumb => thumb_style},
-    :convert_options => { :all => '-auto-orient' },
-    :url => "/system/:attachment/:style_:id.:extension"
-
-  has_attached_file :photo3,
-    :styles => {:medium => medium_style, :thumb => thumb_style},
-    :convert_options => { :all => '-auto-orient' },
-    :url => "/system/:attachment/:style_:id.:extension"
-
-  has_attached_file :photo4,
-    :styles => {:medium => medium_style, :thumb => thumb_style},
-    :convert_options => { :all => '-auto-orient' },
-    :url => "/system/:attachment/:style_:id.:extension"
-
-  has_attached_file :photo5,
-    :styles => {:medium => medium_style, :thumb => thumb_style},
-    :convert_options => { :all => '-auto-orient' },
-    :url => "/system/:attachment/:style_:id.:extension"
+  (1..5).each do |i|
+    has_attached_file("photo#{i}".to_sym, photo_style)
+  end
 
   def state? state
     self.state == state.to_s

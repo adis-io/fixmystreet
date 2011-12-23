@@ -12,10 +12,12 @@ gem 'cancan', '1.6.4'
 gem 'slim', '1.0.2'
 gem 'stateflow', '~> 0.4'
 gem 'pg', '0.12.0'
+gem 'aws-s3'
 
 group :development do
   gem 'capistrano'
   gem 'taps'
+  gem 'heroku'
 end
 
 group :development, :test do

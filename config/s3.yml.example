@@ -1,0 +1,9 @@
+development:
+  bucket: fixmystreet-dev
+  access_key_id: bla bla
+  secret_access_key: bla bla
+
+test:
+  bucket: fixmystreet-test
+  access_key_id: bla bla
+  secret_access_key: bla bla
