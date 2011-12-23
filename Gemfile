@@ -4,7 +4,8 @@ gem 'rails', '3.0.8'
 
 gem 'sqlite3-ruby','1.3.3', :require => 'sqlite3'
 gem 'devise', '~> 1.5'
-gem "oa-oauth", '0.2.0', :require => "omniauth/oauth"
+gem 'omniauth-twitter', '~> 0.0'
+gem 'omniauth-facebook', '~> 1.1'
 gem 'mysql2', '0.2.7'
 gem 'paperclip', '~> 2.4'
 gem 'kaminari', '~> 0.12'
