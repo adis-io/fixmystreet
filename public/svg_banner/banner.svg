@@ -72,4 +72,8 @@
     <set begin="0s" attributeName="visibility" to="hidden" />
     <set begin="15s" attributeName="visibility" to="visible" />
   </svg>
+
+  <rect fill="white" width="100%" height="100%">
+    <set begin="0s" attributeName="visibility" to="hidden" />
+  </rect>
 </svg>
