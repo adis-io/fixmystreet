@@ -1,71 +1,79 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
     "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" width="430" height="480">
+
+    
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMinYMin meet" viewBox="0 0 430 480">
+  <animate id="loop" begin="0s;14s;28s;42s;56s;70s;84s;98s;112s;126s;140s;154s;168s;182s;196s;210s;224s;238s;252s;266s;280s;294s;308s;322s;336s;350s;364s;378s;392s;406s;420s;434s;448s;462s;476s;490s;504s;518s;532s;546s;560s;574s;588s;602s;616s;630s;644s;658s;672s;686s;700s;714s;728s;742s;756s;770s;784s;798s;812s;826s;840s;854s;868s;882s;896s;910s;924s;938s;952s;966s;980s;994s;1008s;1022s;1036s;1050s;1064s;1078s;1092s;1106s;1120s;1134s;1148s;1162s;1176s;1190s;1204s;1218s;1232s;1246s;1260s;1274s;1288s;1302s;1316s;1330s;1344s;1358s;1372s;1386s;1400s" />
   <g>
-    <path id='road' fill="#d1d3d4" d="M341.807,183.504c9.68,2.498,59.726,25.906,17.27,39.579s-229.55,45.336-281.361,71.963c-51.811,26.626-95.706,65.486-46.774,115.859c48.933,50.374,69.801,48.935,69.801,48.935l266.25,0.72c0,0-142.708-73.646-144.147-113.226c-1.439-39.579,42.636-50.001,63.56-57.325c28.784-10.075,72.274-26.612,99.29-36.457c16.506-6.015,42.464-28.31,22.315-47.74C397.306,195.491,292.061,170.666,341.807,183.504z"/>
+    <path fill="#d1d3d4" d="M341.807,183.504c9.68,2.498,59.726,25.906,17.27,39.579s-229.55,45.336-281.361,71.963c-51.811,26.626-95.706,65.486-46.774,115.859c48.933,50.374,69.801,48.935,69.801,48.935l266.25,0.72c0,0-142.708-73.646-144.147-113.226c-1.439-39.579,42.636-50.001,63.56-57.325c28.784-10.075,72.274-26.612,99.29-36.457c16.506-6.015,42.464-28.31,22.315-47.74C397.306,195.491,292.061,170.666,341.807,183.504z"/>
     <image y="10" width="430" height="140" xlink:href="pora.png" />
     <image width="80" height="60" xlink:href="mafynka.png" >
-      <animateTransform attributeName="transform" type="translate" dur="3s" values="315,180;20,240;80,280" fill="freeze" />
-      <animateTransform attributeName="transform" type="scale" additive="sum" values="1;3" dur="3s" fill="freeze"/>
+      <animateTransform attributeName="transform" begin="loop.begin" type="translate" dur="3s" values="315,180;20,240;80,280" fill="freeze" />
+      <animateTransform begin="loop.begin" attributeName="transform" type="scale" additive="sum" values="1;3" dur="3s" fill="freeze"/>
     </image>
     <image width="80" height="60" xlink:href="exclamation.png" transform="translate(-20,150),scale(5)" >
-      <set begin="0s" attributeName="visibility" to="hidden" />
-      <animate attributeName= "visibility" from="hidden" to="visible" begin="3s" dur="0.5s" end="5s" repeatCount="3"/>
+      <set begin="loop.begin" attributeName="visibility" to="hidden" />
+      <animate attributeName="visibility" from="hidden" to="visible" begin="loop.begin+3s" dur="0.5s" repeatCount="3" />
+      <set begin="loop.begin+5s" attributeName="visibility" to="hidden" />
     </image>
-    <set begin="5s" attributeName="visibility" to="hidden" />
+    <set begin="loop.begin+5s" attributeName="visibility" to="hidden" />
+    <set begin="loop.begin+14s" attributeName="visibility" to="visible" />
   </g>
 
   <g>
     <image y="10" width="430" height="220" xlink:href="nekogda.png" />
     <image width="320" height="240" xlink:href="angry_mafynka.png" transform="translate(-10,230)" />
     <image width="240" height="180" xlink:href="small_queue.png" transform="translate(260,60)">
-      <set begin="0s" attributeName="visibility" to="hidden" />
-      <set begin="5.5s" attributeName="visibility" to="visible" />
-      <set begin="10s" attributeName="visibility" to="hidden" />
+      <set begin="loop.begin" attributeName="visibility" to="hidden" />
+      <set begin="loop.begin+5.5s" attributeName="visibility" to="visible" />
+      <set begin="loop.begin+9s" attributeName="visibility" to="hidden" />
     </image>
     <image width="150" height="80" xlink:href="queue.png" transform="translate(290,250)">
-      <set begin="0s" attributeName="visibility" to="hidden" />
-      <set begin="6.5s" attributeName="visibility" to="visible" />
-      <set begin="10s" attributeName="visibility" to="hidden" />
+      <set begin="loop.begin" attributeName="visibility" to="hidden" />
+      <set begin="loop.begin+6.5s" attributeName="visibility" to="visible" />
+      <set begin="loop.begin+9s" attributeName="visibility" to="hidden" />
     </image>
     <image width="160" height="120" x="210" y="200" xlink:href="questions.png" >
-      <set begin="0s" attributeName="visibility" to="hidden" />
-      <animate attributeName= "visibility" from="hidden" to="visible" begin="7s" dur="0.5s" end="10s" repeatCount="3"/>
+      <set begin="loop.begin" attributeName="visibility" to="hidden" />
+      <animate attributeName="visibility" begin="loop.begin+7s" from="hidden" to="visible" dur="0.5s" repeatCount="3" />
+      <set begin="loop.begin+9s" attributeName="visibility" to="hidden" />
     </image>
-    <set begin="0s" attributeName="visibility" to="hidden" />
-    <set begin="5s" attributeName="visibility" to="visible" />
-    <set begin="10s" attributeName="visibility" to="hidden" />
+    <set begin="loop.begin" attributeName="visibility" to="hidden" />
+    <set begin="loop.begin+5s" attributeName="visibility" to="visible" />
+    <set begin="loop.begin+9" attributeName="visibility" to="hidden" />
   </g>
 
   <g>
     <image width="500" height="300" xlink:href="display.png" transform="translate(-35,175)" />
     <g>
       <image x="10" y="15" width="420" height="150" xlink:href="zapishis.png" />
-      <set begin="0s" attributeName="visibility" to="hidden" />
-      <set begin="10.5s" attributeName="visibility" to="visible" />
-    <set begin="15s" attributeName="visibility" to="hidden" />
+      <set begin="loop.begin" attributeName="visibility" to="hidden" />
+      <set begin="loop.begin+10s" attributeName="visibility" to="visible" />
+      <set begin="loop.begin+12s" attributeName="visibility" to="hidden" />
     </g>
     <g>
       <image x="10" y="220" width="420" height="150" xlink:href="neothodya.png" />
-      <set begin="0s" attributeName="visibility" to="hidden" />
-      <set begin="12s" attributeName="visibility" to="visible" />
-    <set begin="15s" attributeName="visibility" to="hidden" />
+      <set begin="loop.begin" attributeName="visibility" to="hidden" />
+      <set begin="loop.begin+11s" attributeName="visibility" to="visible" />
+      <set begin="loop.begin+12s" attributeName="visibility" to="hidden" />
     </g>
-    <set begin="0s" attributeName="visibility" to="hidden" />
-    <set begin="10s" attributeName="visibility" to="visible" />
-    <set begin="15s" attributeName="visibility" to="hidden" />
+    <set begin="loop.begin" attributeName="visibility" to="hidden" />
+    <set begin="loop.begin+9s" attributeName="visibility" to="visible" />
+    <set begin="loop.begin+12s" attributeName="visibility" to="hidden" />
   </g>
   <g>
     <image x="0" y="15" width="420" height="70" xlink:href="jmi.png" />
     <image x="365" y="17" width="20" height="60" xlink:href="exclamation_point.png" >
-      <set begin="0s" attributeName="visibility" to="hidden" />
-      <animate attributeName= "visibility" from="hidden" to="visible" begin="15s" dur="0.7s" repeatCount="indefinite"/>
+      <set begin="loop.begin" attributeName="visibility" to="hidden" />
+      <animate attributeName="visibility" from="hidden" to="visible" begin="loop.begin+12s" dur="0.6s" repeatCount="3" />
+      <set begin="loop.begin+14s" attributeName="visibility" to="hidden" />
     </image>
 
     <image width="400" height="500" xlink:href="joyful_mafynka.png" transform="translate(15, 50)" />
-    <set begin="0s" attributeName="visibility" to="hidden" />
-    <set begin="15s" attributeName="visibility" to="visible" />
+    <set begin="loop.begin" attributeName="visibility" to="hidden" />
+    <set begin="loop.begin+12s" attributeName="visibility" to="visible" />
+    <set begin="loop.begin+14s" attributeName="visibility" to="hidden" />
   </g>
 
   <rect fill="white" width="100%" height="100%">
