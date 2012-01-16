@@ -1,5 +1,11 @@
 module ReportsHelper
 
+  def display_waiting_moderation_item?
+    current_user.present? and \
+      (current_user.admin? or current_user.moderator? or \
+       current_user.reports.waiting_moderation.count > 0)
+  end
+
   def embed_tag video_url, options = {}
     return nil if video_url.nil? or video_url.empty?
     width = if params[:width] then params[:width] else 240 end
@@ -30,20 +36,3 @@ module ReportsHelper
     end
   end
 end
-#    elsif url =~ /bulbul\.kg/
-#      video_id = url.match(/video:(\d+)\//)
-#      if video_id
-#        video_id = video_id[1]
-#        return <<EOT
-#          <object width="#{width}" height="#{height}" name="player" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" id="player">
-#            <param value="http://www.bulbul.kg/player/flvplayer.swf" name="movie">
-#            <param value="true" name="allowfullscreen">
-#            <param value="always" name="allowscriptaccess">
-#            <param value="file=http://static.bulbul.kg/flv/#{video_id[-1]}/#{video_id}.flv&image=http://static.bulbul.kg/img/#{video_id[-1]}/#{video_id}.jpg&logo=http://bulbul.kg/css/images/minilogo3.png" name="flashvars">
-#            <embed width="#{width}" height="#{height}" flashvars="file=http://static.bulbul.kg/flv/#{video_id[-1]}/#{video_id}.flv&image=http://static.bulbul.kg/img/#{video_id[-1]}/#{video_id}.jpg&logo=http://bulbul.kg/css/images/minilogo3.png" allowfullscreen="true" allowscriptaccess="always" src="http://www.bulbul.kg/player/flvplayer.swf" name="player2" id="player2" type="application/x-shockwave-flash">
-#          </object>
-#EOT
-#      end
-#    end
-#  end
-

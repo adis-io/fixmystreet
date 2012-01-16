@@ -3,15 +3,15 @@ class Ability
 
   def initialize(user)
     user ||= User.new # guest user (not logged in)
-    if user.role? :admin
+    if user.admin?
       can :manage, :all
-    elsif user.role? :moderator
+    elsif user.moderator?
       can :manage, [Report]
     else
       can :read, :all
-      can :create, Report
+      can :fixed, Report
       can :waiting_moderation, Report
-      can :inactive, Report
+      can :create, Report
       can :request_fixed, Report
       can :inactivate, Report do |report|
         report.user == user

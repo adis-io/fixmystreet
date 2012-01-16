@@ -9,8 +9,13 @@ class User < ActiveRecord::Base
 
   has_many :reports
 
-  def role?(role)
-    self.role == role.to_s
+  def method_missing(name, *args)
+    # admin?, moderator?
+    if name.to_s =~ /^(admin|moderator)\?$/
+      role == $1
+    else
+      super
+    end
   end
 
   def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)

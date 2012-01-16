@@ -9,10 +9,9 @@
           ul.nav.secondary-nav
             - if user_signed_in?
               li
-                a.btn.danger href=new_report_path = t(:add_new_report)
+                a.btn.danger href=new_report_path = t(:add_a_new_report)
               li
                 = link_to t(:logout), destroy_user_session_path
-            - else 
+            - else
               li
-                a.btn.danger data-controls-modal="login_modal" data-backdrop="true" data-keyboard="true" = t(:login_and_add_new_report)
-
+                a.btn.danger data-controls-modal="login_modal" data-backdrop="true" data-keyboard="true" = t(:sign_in_and_add_a_new_report)

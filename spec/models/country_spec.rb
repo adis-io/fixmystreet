@@ -1,13 +1,25 @@
 require 'spec_helper'
 
 describe Country do
-  it { should validate_presence_of :name, :lat, :long, :zoom }
-  it { should allow_mass_assignment_of :name, :lat, :long, :zoom,
-    :default_city }
-  Country.create! :name => 'aoeuaoeu',
-               :lat => 1, :long => 3, :zoom => 1
+  it { should validate_presence_of :name }
+  it { should validate_presence_of :lat }
+  it { should validate_presence_of :lng }
+  it { should validate_presence_of :zoom }
+  it { should validate_presence_of :country_code }
 
-  it { should validate_uniqueness_of :name }
+  it { should allow_mass_assignment_of :name }
+  it { should allow_mass_assignment_of :lat }
+  it { should allow_mass_assignment_of :lng }
+  it { should allow_mass_assignment_of :zoom }
+  it { should allow_mass_assignment_of :country_code }
+
   it { should have_many :cities }
-  it { should have_one :default_city, :class_name => "City" }
+
+  context "uniqueness" do
+    before do
+      Country.create! :name => "Kyrgyzstan", :lat => 1, :lng => 1, :zoom => 1, :country_code => 'kg'
+    end
+    it { should validate_uniqueness_of :name }
+    it { should validate_uniqueness_of :country_code }
+  end
 end

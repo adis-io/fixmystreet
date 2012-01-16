@@ -1,39 +1,34 @@
 class ReportsController < ApplicationController
   load_and_authorize_resource
-  before_filter :fetch_city, :except => [:new, :create]
+  before_filter :fetch_city, except: [:new, :create]
   before_filter :fetch_reports,
-    :only => [:index, :fixed_index, :waiting_moderation_index,
-    :waiting_confirmation_reports]
+    only: [:index, :fixed, :waiting_moderation, :waiting_confirmation, :inactive]
 
   def index
-    @reports_type = :active
-    @reports = @reports.where(:state => 'active').page params[:page]
+    @reports_type = :active_reports
+    @reports = @reports.active.page params[:page]
   end
 
   def fixed
-    @reports_type = :fixed
-    @reports = @reports.where(:state => 'fixed').page params[:page]
+    @reports = @reports.fixed.page params[:page]
     render 'index'
   end
 
   def waiting_moderation
-    @reports_type = :waiting_moderation
     @reports = @reports.where(:user_id => current_user) unless can? :manage, Report
-    @reports = @reports.where(:state => 'waiting_moderation').page params[:page]
+    @reports = @reports.waiting_moderation.page params[:page]
     render 'index'
   end
 
   def waiting_confirmation
-    @reports_type = :waiting_confirmation
     @reports = @reports.where(:user_id => current_user) unless can? :manage, Report
-    @reports = @reports.where(:state => 'waiting_confirmation').page params[:page]
+    @reports = @reports.waiting_confirmation.page params[:page]
     render 'index'
   end
 
   def inactive
-    @reports_type = :inactive
     @reports = @reports.where(:user_id => current_user) unless can? :manage, Report
-    @reports = @reports.where(:state => 'inactive').page params[:page]
+    @reports = @reports.inactive.page params[:page]
     render 'index'
   end
 
@@ -111,7 +106,8 @@ class ReportsController < ApplicationController
 
   private
   def fetch_reports
-    @reports = Report.located_in(@city).order("id desc").scoped
+    @reports_type = "#{action_name}_reports".to_sym
+    @reports = @reports.located_in(@city).order("id desc").scoped
   end
 
   def fetch_city

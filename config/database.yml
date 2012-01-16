@@ -4,7 +4,7 @@ development:
 
 test: &test
   adapter: postgresql
-  database: fixmystreet_tes
+  database: fixmystreet_test
 
 cucumber:
   <<: *test

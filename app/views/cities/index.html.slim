@@ -1,0 +1,4 @@
+ul#cities
+  - @country.cities.each do |city|
+    li
+      h3= link_to(city.name, list_reports_path(city))

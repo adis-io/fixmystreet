@@ -12,14 +12,20 @@ class Report < ActiveRecord::Base
 
   # accessibility
   attr_accessible :title, :description, :lat, :lng,
-    :user, :video_url, :city_id,
+    :user, :video_url, :city, :city_id,
     :photo1, :photo2, :photo3, :photo4, :photo5
 
   # relations
   belongs_to :user
   belongs_to :city
 
+  default_scope :order => 'created_at DESC'
+
   scope :located_in, lambda { |city| where(:city_id => city) }
+  [:inactive, :fixed, :waiting_moderation, :waiting_confirmation].each do |state|
+    scope state, where(:state => state.to_s)
+  end
+  scope :active, where("state IN ('active', 'waiting_confirmation')")
 
   # paperclip
   photo_style = {
@@ -27,6 +33,7 @@ class Report < ActiveRecord::Base
     :convert_options => { :all => '-auto-orient' },
     :storage => :s3,
     :s3_credentials => S3_CREDENTIALS,
+    :s3_permissions => :private,
     :path => "/:style/:id/:filename"
   }
 

@@ -1,13 +1,13 @@
 Fixmystreet::Application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
-  root :to => "countries#show"
 
   match 'about' => 'reports#about', :as => :about
   match 'contacts' => 'reports#contacts', :as => :contacts
   match 'feed' => 'reports#feed', :as => :feed
 
   resources :reports, :only => [:new, :create]
+  resources :cities, :only => :index
 
   scope ":city" do
     resources :reports, :only => [:show, :edit, :update, :destroy] do
@@ -31,4 +31,5 @@ Fixmystreet::Application.routes.draw do
     end
   end
 
+  root :to => "cities#index"
 end

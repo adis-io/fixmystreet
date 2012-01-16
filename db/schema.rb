@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111002083004) do
+ActiveRecord::Schema.define(:version => 20111224161039) do
 
   create_table "cities", :force => true do |t|
     t.string   "name"
@@ -21,6 +22,7 @@ ActiveRecord::Schema.define(:version => 20111002083004) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "slug"
+    t.integer  "position"
   end
 
   add_index "cities", ["country_id"], :name => "index_cities_on_country_id"
@@ -103,4 +105,5 @@ ActiveRecord::Schema.define(:version => 20111002083004) do
   add_index "users", ["facebook_id"], :name => "index_users_on_facebook_id"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
   add_index "users", ["twitter_id"], :name => "index_users_on_twitter_id"
+
 end

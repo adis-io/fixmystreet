@@ -11,5 +11,39 @@ require 'spec_helper'
 #   end
 # end
 describe ReportsHelper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "#display_waiting_moderation_item?" do
+    subject { display_waiting_moderation_item? }
+    before do
+    end
+    context "current user is admin" do
+      before do
+        user = create(:user, role: 'admin')
+        should_receive(:current_user).twice.and_return(user)
+      end
+      it { should be_true }
+    end
+    context "current user is moderator" do
+      before do
+        user = create(:user, role: 'moderator')
+        should_receive(:current_user).exactly(3).times.and_return(user)
+      end
+      it { should be_true }
+    end
+    context "regular user has reports" do
+      before do
+        user = create(:user)
+        create(:report, user: user, state: :waiting_moderation)
+        should_receive(:current_user).exactly(4).times.and_return(user)
+      end
+      it { should be_true }
+    end
+
+    context "false" do
+      before do
+        user = create(:user)
+        should_receive(:current_user).exactly(4).times.and_return(user)
+      end
+      it { should be_false }
+    end
+  end
 end
