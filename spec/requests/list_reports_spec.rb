@@ -10,7 +10,7 @@ describe "Report listing" do
     @city = create(:city)
   end
 
-  subject { find(:xpath, "//div[@class='span6']").all(:xpath, ".//a").collect(&:text) }
+  subject { report_list }
 
   describe "active and waiting confirmation" do
     before do

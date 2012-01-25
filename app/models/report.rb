@@ -55,16 +55,12 @@ class Report < ActiveRecord::Base
       transitions :from => :waiting_moderation, :to => :active
     end
 
-    event :decline do
-      transitions :from => :waiting_moderation, :to => :inactive
-    end
-
     event :activate do
       transitions :from => :inactive, :to => :active
     end
 
     event :inactivate do
-      transitions :from => [:active, :waiting_confirmation, :fixed], :to => :inactive
+      transitions :from => [:waiting_moderation, :active, :waiting_confirmation, :fixed], :to => :inactive
     end
 
     event :request_fixed do

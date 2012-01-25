@@ -15,5 +15,6 @@ describe "creating a new report" do
     click_button 'Save'
     find(:css, "h3").text.should == title
     find(:css, "#description").text.should == desc
+    URI.parse(page.current_url).path.should eq "/#{city.slug}/reports/#{Report.last.id}"
   end
 end

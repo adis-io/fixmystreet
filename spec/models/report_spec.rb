@@ -32,6 +32,13 @@ describe Report do
         @report.state?(:fixed).should be_false
       end
     end
+
+    context 'on decline' do
+      before { @report = Factory(:report); @report.inactivate! }
+      it "should be inactive" do
+        @report.state?(:inactive).should be_true
+      end
+    end
   end
 
   describe "'active' state" do
@@ -64,27 +71,27 @@ describe Report do
     end
 
     context "when accepted" do
-      before { @report.accept }
+      before { @report.accept! }
       it { should eq "active" }
     end
 
     context "when declined" do
-      before { @report.decline }
+      before { @report.inactivate! }
       it { should eq "inactive" }
     end
 
     context "when inactivate" do
-      before { @report.accept;@report.inactivate }
+      before { @report.accept!;@report.inactivate! }
       it { should eq "inactive" }
     end
 
     context "when activate" do
-      before { @report.accept; @report.inactivate; @report.activate }
+      before { @report.accept!; @report.inactivate!; @report.activate! }
       it { should eq "active" }
     end
 
     it "should raise exception" do
-      lambda { @report.inactivate }.should raise_error(Stateflow::NoTransitionFound)
+      lambda { @report.request_fixed! }.should raise_error(Stateflow::NoTransitionFound)
     end
 
     # Wasting time
